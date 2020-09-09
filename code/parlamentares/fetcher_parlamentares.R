@@ -12,7 +12,7 @@ fetch_parlamentares_em_exercicio <- function() {
     jsonlite::fromJSON()
   
   parlamentares <- parlamentares %>%
-    rename(id_parlamentar = id_autor_parlametria,
+    rename(id_parlamentar_parlametria = id_autor_parlametria,
            casa = casa_autor,
            nome = nome_autor)
   
