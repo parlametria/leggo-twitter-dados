@@ -16,6 +16,7 @@ Instale o [docker](https://docs.docker.com/install/) e o [docker-compose](https:
 Os serviços providos pelo Leggo twitter incluem:
 
 - **postgres**: Serviço com o Banco de dados usado pelos outros módulos do repositório
+- **feed**: Serviço para acessar e modificar o Banco de dados. Este serviço é uma CLI que possui comandos úteis para acesso e gerenciamento do Banco de dados usando o módulo Feed que contém as migrations executadas no BD. Para mais instruções sobre esse serviço acesse o `make --help`.
 
 Os serviços podem ser levantados via docker:
 
