@@ -25,7 +25,7 @@ process_temas <-
 #' @return Dataframe com informações processadas do mapemento das temas e proposições.
 process_temas_proposicoes <-
   function(proposicoes_datapath = here::here("data/proposicoes/proposicoes.csv"),
-           temas_datapath = here::here("data/bd/temas.csv")) {
+           temas_datapath = here::here("data/bd/temas/temas.csv")) {
     
     proposicoes <-
       read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>%

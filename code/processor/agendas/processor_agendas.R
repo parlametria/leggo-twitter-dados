@@ -24,7 +24,7 @@ process_agendas <-
 #' @return Dataframe com informações processadas do mapemento das agendas e proposições.
 process_agendas_proposicoes <-
   function(proposicoes_datapath = here::here("data/proposicoes/proposicoes.csv"),
-           agendas_datapath = here::here("data/bd/agendas.csv")) {
+           agendas_datapath = here::here("data/bd/agendas/agendas.csv")) {
     
     proposicoes <-
       read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>%

@@ -9,7 +9,7 @@
     
     message("Salvando dados...")
     write_csv(temas,
-              paste0(output_folderpath, "temas.csv"))
+              paste0(output_folderpath, "temas/temas.csv"))
     
     message("Feito!")
   }
@@ -25,7 +25,7 @@
     
     message("Salvando dados...")
     write_csv(temas,
-              paste0(output_folderpath, "temas_proposicoes.csv"))
+              paste0(output_folderpath, "temas/temas_proposicoes.csv"))
     
     message("Feito!")
   }

@@ -9,7 +9,7 @@
     
     message("Salvando dados...")
     write_csv(tweets,
-              paste0(output_folderpath, "tweets.csv"))
+              paste0(output_folderpath, "tweets/tweets.csv"))
     
     message("Feito!")
   }
@@ -25,7 +25,7 @@
     
     message("Salvando dados...")
     write_csv(tweets,
-              paste0(output_folderpath, "tweets_proposicoes.csv"))
+              paste0(output_folderpath, "tweets/tweets_proposicoes.csv"))
     
     message("Feito!")
   }

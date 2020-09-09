@@ -36,7 +36,7 @@ library(tidyverse)
 #' @return Dataframe com informações processadas dos tweets
 process_tweets <-
   function(tweets_datapath = here::here("data/tweets/tweets.csv"),
-           parlamentares_datapath = here::here("data/bd/parlamentares.csv")) {
+           parlamentares_datapath = here::here("data/bd/parlamentares/parlamentares.csv")) {
     source(here::here("code/processor/parlamentares/processor_parlamentares.R"))
     
     tweets <-
@@ -77,8 +77,8 @@ process_tweets <-
 #' @return Dataframe com informações processadas do mapeamento de tweets e proposições
 process_tweets_proposicoes <-
   function(tweets_datapath = here::here("data/tweets/tweets.csv"),
-           tweets_processados_datapath = here::here("data/bd/tweets.csv"),
-           proposicoes_datapath = here::here("data/bd/proposicoes.csv")) {
+           tweets_processados_datapath = here::here("data/bd/tweets/tweets.csv"),
+           proposicoes_datapath = here::here("data/bd/proposicoes/proposicoes.csv")) {
     
     tweets_com_parlamentares_em_exercicio <-
       read_csv(tweets_processados_datapath, col_types = "cccccicddddddd") %>%

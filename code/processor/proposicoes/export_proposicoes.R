@@ -9,7 +9,7 @@
     
     message("Salvando dados...")
     write_csv(proposicoes,
-              paste0(output_folderpath, "proposicoes.csv"))
+              paste0(output_folderpath, "proposicoes/proposicoes.csv"))
     
     message("Feito!")
   }
