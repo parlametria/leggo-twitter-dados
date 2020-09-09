@@ -1,7 +1,8 @@
 ## Leggo Twitter Dados
 
 <br>
-Este é módulo é responsável pelo processamento dos dados que envolvem o twitter, proposições e parlamentares da plataforma [Leggo](https://leggo.parlametria.org)
+
+Este é módulo é responsável pelo processamento dos dados que envolvem o twitter, proposições e parlamentares da plataforma [Leggo](https://leggo.parlametria.org).
 
 ## Docker
 
