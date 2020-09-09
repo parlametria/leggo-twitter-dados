@@ -1,0 +1,26 @@
+version: '3.5'
+
+services:   
+
+  postgres:
+    image: postgres:12.4-alpine
+    container_name: postgres-leggo-twitter
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-leggotwitter}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secret}
+      - TZ=GMT
+    volumes:
+      - leggo_twitter_data:/var/lib/postgresql/data/
+    ports:
+      - 7688:5432
+    networks:
+      - twitternet
+
+networks:
+  twitternet:
+    name: leggo_twitter_network
+      
+volumes:
+  leggo_twitter_data:
