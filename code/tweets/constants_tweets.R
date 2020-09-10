@@ -1,0 +1,1 @@
+.URL_MENCOES_CR <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTzRenkb_pOtfq1VjcrKNQ7lD8yVHntQHAdR01iKZA2AebkOpe3j8FCb4M2slnxdh495SWil_ZoC5sw/pub?gid=1098432023&single=true&output=csv"
