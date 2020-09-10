@@ -1,0 +1,592 @@
+id_parlamentar_parlametria,casa,nome,partido,uf
+222,senado,Esperidião Amin,PP,SC
+235,senado,Jader Barbalho,MDB,PA
+270,senado,Renan Calheiros,MDB,AL
+290,senado,José Serra,PSDB,SP
+2285,senado,Marcio Bittar,MDB,AC
+2345,senado,Flávio Arns,REDE,PR
+2374,senado,Paulo Rocha,PT,PA
+2470,senado,Chico Rodrigues,DEM,RR
+2475,senado,Confúcio Moura,MDB,RO
+2581,senado,Jaques Wagner,PT,BA
+2677,senado,Roberto Rocha,PSDB,MA
+2739,senado,Ciro Nogueira,PP,PI
+2742,senado,Marcelo Castro,MDB,PI
+2751,senado,Arolde de Oliveira,PSD,RJ
+2825,senado,Paulo Paim,PT,RS
+2945,senado,Alvaro Dias,PODEMOS,PR
+21023,senado,Maria do Carmo Alves,DEM,SE
+21173,senado,Wellington Fagundes,PL,MT
+21186,senado,Luis Carlos Heinze,PP,RS
+21249,senado,Kátia Abreu,PP,TO
+22331,senado,Rose de Freitas,PODEMOS,ES
+23361,senado,José Maranhão,MDB,PB
+23396,senado,Tasso Jereissati,PSDB,CE
+23777,senado,Eduardo Gomes,MDB,TO
+23806,senado,Zequinha Marinho,PSC,PA
+23830,senado,Davi Alcolumbre,DEM,AP
+24525,senado,Fernando Collor,PROS,AL
+24531,senado,Jayme Campos,DEM,MT
+24545,senado,Jarbas Vasconcelos,MDB,PE
+24560,senado,Sérgio Petecão,PSD,AC
+24770,senado,Izalci Lucas,PSDB,DF
+24981,senado,Acir Gurgacz,PDT,RO
+24994,senado,Eduardo Braga,MDB,AM
+25008,senado,Humberto Costa,PT,PE
+25012,senado,Randolfe Rodrigues,REDE,AP
+25236,senado,Reguffe,PODEMOS,DF
+25322,senado,Romário,PODEMOS,RJ
+25350,senado,Jorginho Mello,PL,SC
+25352,senado,Rogério Carvalho,PT,SE
+25376,senado,Mara Gabrilli,PSDB,SP
+25385,senado,Irajá,PSD,TO
+25411,senado,Weverton,PDT,MA
+25422,senado,Marcos Rogério,DEM,RO
+25502,senado,Plínio Valério,PSDB,AM
+25523,senado,Otto Alencar,PSD,BA
+25525,senado,Omar Aziz,PSD,AM
+25527,senado,Simone Tebet,MDB,MS
+25529,senado,Antonio Anastasia,PSD,MG
+25531,senado,Elmano Férrer,PODEMOS,PI
+25533,senado,Lasier Martins,PODEMOS,RS
+25535,senado,Telmário Mota,PROS,RR
+25537,senado,Dário Berger,MDB,SC
+25540,senado,Fernando Bezerra Coelho,MDB,PE
+25666,senado,Major Olimpio,PSL,SP
+25718,senado,Eliziane Gama,CIDADANIA,MA
+25732,senado,Rodrigo Pacheco,DEM,MG
+25748,senado,Veneziano Vital do Rêgo,PSB,PB
+25783,senado,Zenaide Maia,PROS,RN
+25894,senado,Flávio Bolsonaro,REPUBLICANOS,RJ
+25895,senado,Jorge Kajuru,CIDADANIA,GO
+25899,senado,Vanderlan Cardoso,PSD,GO
+25905,senado,Rodrigo Cunha,PSDB,AL
+25924,senado,Oriovisto Guimarães,PODEMOS,PR
+25926,senado,Lucas Barreto,PSD,AP
+25942,senado,Marcos do Val,PODEMOS,ES
+25953,senado,Fabiano Contarato,REDE,ES
+25959,senado,Styvenson Valentim,PODEMOS,RN
+25967,senado,Angelo Coronel,PSD,BA
+25973,senado,Cid Gomes,PDT,CE
+25976,senado,Eduardo Girão,PODEMOS,CE
+25979,senado,Leila Barros,PSB,DF
+25982,senado,Alessandro Vieira,CIDADANIA,SE
+25985,senado,Nelsinho Trad,PSD,MS
+25988,senado,Soraya Thronicke,PSL,MS
+25990,senado,Carlos Viana,PSD,MG
+25998,senado,Daniella Ribeiro,PP,PB
+26027,senado,Mecias de Jesus,REPUBLICANOS,RR
+26295,senado,Carlos Fávaro,PSD,MT
+162881,camara,Danilo Forte,PSDB,CE
+166179,camara,Norma Ayub,DEM,ES
+166828,camara,Fausto Pinato,PP,SP
+167138,camara,Iracema Portella,PP,PI
+168720,camara,Fábio Henrique,PDT,SE
+169871,camara,Bacelar,PODE,BA
+172442,camara,Felipe Carreras,PSB,PE
+173433,camara,Arlindo Chinaglia,PT,SP
+173441,camara,Celso Russomanno,REPUBLICANOS,SP
+173460,camara,Gustavo Fruet,PDT,PR
+173466,camara,Rubens Bueno,CIDADANIA,PR
+173482,camara,Henrique Fontana,PT,RS
+173486,camara,Pompeo De Mattos,PDT,RS
+173531,camara,Ivan Valente,PSOL,SP
+173586,camara,Júlio Delgado,PSB,MG
+173604,camara,Rui Falcão,PT,SP
+173692,camara,Osmar Terra,MDB,RS
+173696,camara,Angela Amin,PP,SC
+173701,camara,Benedita Da Silva,PT,RJ
+173772,camara,Hermes Parcianello,MDB,PR
+173788,camara,Ricardo Barros,PP,PR
+173801,camara,Renildo Calheiros,PCdoB,PE
+173808,camara,Sérgio Brito,PSD,BA
+173943,camara,Perpétua Almeida,PCdoB,AC
+174043,camara,Wellington Roberto,PL,PB
+174044,camara,Wilson Santiago,PTB,PB
+174052,camara,Bosco Costa,PL,SE
+174057,camara,Alice Portugal,PCdoB,BA
+174060,camara,Daniel Almeida,PCdoB,BA
+174075,camara,Elcione Barbalho,MDB,PA
+174079,camara,José Priante,MDB,PA
+174090,camara,Átila Lins,PP,AM
+174156,camara,Leonardo Monteiro,PT,MG
+174158,camara,Mário Heringer,PDT,MG
+174159,camara,Odair Cunha,PT,MG
+174160,camara,Patrus Ananias,PT,MG
+174161,camara,Reginaldo Lopes,PT,MG
+174200,camara,Gastão Vieira,PROS,MA
+174262,camara,Carlos Sampaio,PSDB,SP
+174270,camara,Gilberto Nascimento,PSC,SP
+174273,camara,Jefferson Campos,PSB,SP
+174283,camara,Vicentinho,PT,SP
+174299,camara,Leônidas Cristino,PDT,CE
+174317,camara,Júlio Cesar,PSD,PI
+174352,camara,Nilson Pinto,PSDB,PA
+174356,camara,Silas Câmara,REPUBLICANOS,AM
+174366,camara,João Campos,REPUBLICANOS,GO
+174371,camara,Rubens Otoni,PT,GO
+174376,camara,Vander Loubet,PT,MS
+174383,camara,Giacobo,PL,PR
+174398,camara,Maria Do Rosário,PT,RS
+174400,camara,Paulo Pimenta,PT,RS
+174419,camara,Gonzaga Patriota,PSB,PE
+174439,camara,Wolney Queiroz,PDT,PE
+174459,camara,Átila Lira,PP,PI
+174467,camara,Damião Feliciano,PDT,PB
+174471,camara,André De Paula,PSD,PE
+174478,camara,Luciano Bivar,PSL,PE
+174537,camara,Claudio Cajado,PP,BA
+174554,camara,José Rocha,PL,BA
+174574,camara,Paulo Magalhães,PSD,BA
+174585,camara,Lincoln Portela,PL,MG
+174646,camara,Aécio Neves,PSDB,MG
+174655,camara,Eduardo Barbosa,PSDB,MG
+174693,camara,Rodrigo Maia,DEM,RJ
+174749,camara,Mauro Lopes,MDB,MG
+174784,camara,Luiza Erundina,PSOL,SP
+174806,camara,Tadeu Filippelli,MDB,DF
+174848,camara,Jandira Feghali,PCdoB,RJ
+175431,camara,Maurício Dziedricki,PTB,RS
+176874,camara,Marcelo Freixo,PSOL,RJ
+181055,camara,Márcio Jerry,PCdoB,MA
+181297,camara,Dra. Soraya Manato,PSL,ES
+190201,camara,Pedro Augusto Bezerra,PTB,CE
+190842,camara,Santini,PTB,RS
+192102,camara,Leur Lomanto Júnior,DEM,BA
+192346,camara,Eduardo Bolsonaro,PSL,SP
+192699,camara,Fernando Monteiro,PP,PE
+192776,camara,Stefano Aguiar,PSD,MG
+193083,camara,Cacá Leão,PP,BA
+198057,camara,Lafayette De Andrada,REPUBLICANOS,MG
+1107283,camara,Gleisi Hoffmann,PT,PR
+1108338,camara,Jaqueline Cassol,PP,RO
+1109429,camara,Benes Leocádio,REPUBLICANOS,RN
+1112437,camara,João Marcelo Souza,MDB,MA
+1115746,camara,Gelson Azevedo,PL,RJ
+1116379,camara,Darci De Matos,PSD,SC
+1121948,camara,Adriano Do Baldy,PP,GO
+1122158,camara,Pedro Paulo,DEM,RJ
+1122974,camara,Pedro Lucas Fernandes,PTB,MA
+1128760,camara,Paulo Marinho Jr,PL,MA
+1132504,camara,Enio Verri,PT,PR
+1133439,camara,André Figueiredo,PDT,CE
+1133810,camara,Marcelo Moraes,PTB,RS
+1133968,camara,Paulo Ramos,PDT,RJ
+1134812,camara,Edmilson Rodrigues,PSOL,PA
+1135054,camara,Cristiano Vale,PL,PA
+1136811,camara,Afonso Hamm,PP,RS
+1137070,camara,Vicentinho Júnior,PL,TO
+1139285,camara,Lídice Da Mata,PSB,BA
+1141335,camara,Beto Faro,PT,PA
+1141391,camara,Arnaldo Jardim,CIDADANIA,SP
+1141398,camara,Carlos Zarattini,PT,SP
+1141401,camara,Carlos Bezerra,MDB,MT
+1141405,camara,Celso Maldaner,MDB,SC
+1141408,camara,Cleber Verde,REPUBLICANOS,MA
+1141411,camara,Dagoberto Nogueira,PDT,MS
+1141417,camara,Edio Lopes,PL,RR
+1141421,camara,Eduardo Da Fonte,PP,PE
+1141422,camara,Efraim Filho,DEM,PB
+1141427,camara,Fábio Ramalho,MDB,MG
+1141431,camara,Fernando Coelho Filho,DEM,PE
+1141434,camara,Flaviano Melo,MDB,AC
+1141439,camara,Chico D'angelo,PDT,RJ
+1141450,camara,Hugo Leal,PSD,RJ
+1141458,camara,João Carlos Bacelar,PL,BA
+1141459,camara,João Maia,PL,RN
+1141464,camara,José Airton Félix Cirilo,PT,CE
+1141470,camara,José Guimarães,PT,CE
+1141488,camara,Paulo Teixeira,PT,SP
+1141508,camara,Mauro Nazif,PSB,RO
+1141513,camara,Bilac Pinto,DEM,MG
+1141516,camara,Paulo Abi-Ackel,PSDB,MG
+1141518,camara,Paulo Pereira Da Silva,SOLIDARIEDADE,SP
+1141523,camara,Raul Henry,MDB,PE
+1141531,camara,Rodrigo De Castro,PSDB,MG
+1141553,camara,Vanderlei Macris,PSDB,SP
+1141555,camara,Vinicius Carvalho,REPUBLICANOS,SP
+1143084,camara,Tiago Dimas,SOLIDARIEDADE,TO
+1143632,camara,Domingos Neto,PSD,CE
+1146307,camara,Neri Geller,PP,MT
+1146788,camara,Marcelo Aro,PP,MG
+1150418,camara,Márcio Marinho,REPUBLICANOS,BA
+1151208,camara,Laercio Oliveira,PP,SE
+1152605,camara,Glauber Braga,PSOL,RJ
+1152610,camara,Roberto Alves,REPUBLICANOS,SP
+1154178,camara,Milton Vieira,REPUBLICANOS,SP
+1156190,camara,Marcel Van Hattem,NOVO,RS
+1157130,camara,Túlio Gadêlha,PDT,PE
+1160508,camara,Afonso Florence,PT,BA
+1160510,camara,Luis Tibé,AVANTE,MG
+1160511,camara,Alessandro Molon,PSB,RJ
+1160512,camara,Aureo Ribeiro,SOLIDARIEDADE,RJ
+1160518,camara,Weliton Prado,PROS,MG
+1160527,camara,Aguinaldo Ribeiro,PP,PB
+1160528,camara,Danilo Cabral,PSB,PE
+1160531,camara,Jhonatan De Jesus,REPUBLICANOS,RR
+1160532,camara,Eli Corrêa Filho,DEM,SP
+1160534,camara,Lauriete,PL,ES
+1160535,camara,Marcon,PT,RS
+1160538,camara,Bohn Gass,PT,RS
+1160541,camara,Arthur Lira,PP,AL
+1160545,camara,Alexandre Leite,DEM,SP
+1160552,camara,Danrlei De Deus Hinterholz,PSD,RS
+1160553,camara,Antonio Brito,PSD,BA
+1160556,camara,Padre João,PT,MG
+1160558,camara,Paulo Freire Costa,PL,SP
+1160559,camara,Alceu Moreira,MDB,RS
+1160569,camara,Waldenor Pereira,PT,BA
+1160570,camara,Jerônimo Goergen,PP,RS
+1160575,camara,Erika Kokay,PT,DF
+1160587,camara,Fábio Trad,PSD,MS
+1160588,camara,Diego Andrade,PSD,MG
+1160589,camara,Bruna Furlan,PSDB,SP
+1160591,camara,Vinicius Gurgel,PL,AP
+1160592,camara,Zeca Dirceu,PT,PR
+1160598,camara,Flávia Morais,PDT,GO
+1160599,camara,Dimas Fabiano,PP,MG
+1160600,camara,Arthur Oliveira Maia,DEM,BA
+1160601,camara,Pr. Marco Feliciano,REPUBLICANOS,SP
+1160604,camara,Pedro Uczai,PT,SC
+1160610,camara,Valmir Assunção,PT,BA
+1160619,camara,José Nunes,PSD,BA
+1160632,camara,Zé Silva,SOLIDARIEDADE,MG
+1160635,camara,Ruy Carneiro,PSDB,PB
+1160639,camara,Professora Dorinha Seabra Rezende,DEM,TO
+1160640,camara,Eros Biondini,PROS,MG
+1160641,camara,Professora Marcivania,PCdoB,AP
+1160642,camara,Pastor Eurico,PATRIOTA,PE
+1160645,camara,Luiz Carlos,PSDB,AP
+1160651,camara,Rogério Peninha Mendonça,MDB,SC
+1160653,camara,Roberto De Lucena,PODE,SP
+1160655,camara,Ricardo Izar,PP,SP
+1160665,camara,Augusto Coutinho,SOLIDARIEDADE,PE
+1160666,camara,Félix Mendonça Júnior,PDT,BA
+1160667,camara,Guilherme Mussi,PP,SP
+1160669,camara,Genecias Noronha,SOLIDARIEDADE,CE
+1160673,camara,Giovani Cherini,PL,RS
+1160674,camara,Hugo Motta,REPUBLICANOS,PB
+1160758,camara,Domingos Sávio,PSDB,MG
+1160976,camara,Tiririca,PL,SP
+1161550,camara,Emidinho Madeira,PSB,MG
+1162332,camara,Luiz Nishimori,PL,PR
+1164359,camara,Delegado Waldir,PSL,GO
+1164360,camara,Carmen Zanotto,CIDADANIA,SC
+1166402,camara,Magda Mofatto,PL,GO
+1171617,camara,Paulão,PT,AL
+1171619,camara,Margarida Salomão,PT,MG
+1171623,camara,Fabio Reis,MDB,SE
+1177282,camara,Subtenente Gonzaga,PDT,MG
+1178829,camara,Capitão Augusto,PL,SP
+1178830,camara,Dr. Sinval Malheiros,PODE,SP
+1178831,camara,André Abdon,PP,AP
+1178832,camara,Leandre,PV,PR
+1178833,camara,Alexandre Serfiotis,PSD,RJ
+1178835,camara,Afonso Motta,PDT,RS
+1178836,camara,Alan Rick,DEM,AC
+1178839,camara,Jéssica Sales,MDB,AC
+1178842,camara,Jhc,PSB,AL
+1178843,camara,Marx Beltrão,PSD,AL
+1178854,camara,Elmar Nascimento,DEM,BA
+1178857,camara,Jorge Solla,PT,BA
+1178858,camara,Mário Negromonte Jr.,PP,BA
+1178860,camara,Paulo Azi,DEM,BA
+1178861,camara,Ronaldo Carletto,PP,BA
+1178863,camara,Uldurico Junior,PROS,BA
+1178866,camara,Luizianne Lins,PT,CE
+1178871,camara,Evair Vieira De Melo,PP,ES
+1178873,camara,Helder Salomão,PT,ES
+1178874,camara,Sergio Vidigal,PDT,ES
+1178876,camara,Célio Silveira,PSDB,GO
+1178879,camara,Lucas Vergilio,SOLIDARIEDADE,GO
+1178881,camara,Aluisio Mendes,PSC,MA
+1178882,camara,André Fufuca,PP,MA
+1178884,camara,Hildo Rocha,MDB,MA
+1178886,camara,Juscelino Filho,DEM,MA
+1178889,camara,Zé Carlos,PT,MA
+1178895,camara,Misael Varella,PSD,MG
+1178896,camara,Newton Cardoso Jr,MDB,MG
+1178908,camara,Delegado Éder Mauro,PSD,PA
+1178909,camara,Hélio Leite,DEM,PA
+1178910,camara,Joaquim Passarinho,PSD,PA
+1178912,camara,Pedro Cunha Lima,PSDB,PB
+1178916,camara,Daniel Coelho,CIDADANIA,PE
+1178920,camara,Ricardo Teobaldo,PODE,PE
+1178921,camara,Sebastião Oliveira,PL,PE
+1178922,camara,Tadeu Alencar,PSB,PE
+1178924,camara,Capitão Fábio Abreu,PL,PI
+1178925,camara,Rejane Dias,PT,PI
+1178927,camara,Aliel Machado,PSB,PR
+1178928,camara,Christiane De Souza Yared,PL,PR
+1178929,camara,Diego Garcia,PODE,PR
+1178930,camara,Roman,PATRIOTA,PR
+1178931,camara,Luciano Ducci,PSB,PR
+1178933,camara,Sergio Souza,MDB,PR
+1178934,camara,Toninho Wandscheer,PROS,PR
+1178939,camara,Clarissa Garotinho,PROS,RJ
+1178945,camara,Rosangela Gomes,REPUBLICANOS,RJ
+1178946,camara,Soraya Santos,PL,RJ
+1178947,camara,Sóstenes Cavalcante,DEM,RJ
+1178948,camara,Beto Rosado,PP,RN
+1178951,camara,Rafael Motta,PSB,RN
+1178952,camara,Walter Alves,MDB,RN
+1178953,camara,Expedito Netto,PSD,RO
+1178954,camara,Lucio Mosquini,MDB,RO
+1178956,camara,Mariana Carvalho,PSDB,RO
+1178959,camara,Hiran Gonçalves,PP,RR
+1178961,camara,Shéridan,PSDB,RR
+1178962,camara,Carlos Gomes,REPUBLICANOS,RS
+1178964,camara,Heitor Schuch,PSB,RS
+1178966,camara,Geovania De Sá,PSDB,SC
+1178969,camara,Fábio Mitidieri,PSD,SE
+1178970,camara,João Daniel,PT,SE
+1178972,camara,Alex Manente,CIDADANIA,SP
+1178975,camara,Baleia Rossi,MDB,SP
+1178977,camara,Eduardo Cury,PSDB,SP
+1178981,camara,Herculano Passos,MDB,SP
+1178983,camara,Marcio Alvino,PL,SP
+1178985,camara,Miguel Lombardi,PL,SP
+1178986,camara,Nilto Tatto,PT,SP
+1178987,camara,Orlando Silva,PCdoB,SP
+1178990,camara,Samuel Moreira,PSDB,SP
+1178992,camara,Vitor Lippi,PSDB,SP
+1178993,camara,Carlos Henrique Gaguim,DEM,TO
+1178994,camara,Dulce Miranda,MDB,TO
+1178996,camara,Giovani Feltes,MDB,RS
+1178997,camara,Moses Rodrigues,MDB,CE
+1179001,camara,Márcio Biolchi,MDB,RS
+1179587,camara,Vitor Hugo,PSL,GO
+1188097,camara,Merlong Solano,PT,PI
+1191923,camara,Flávio Nogueira,PDT,PI
+1193726,camara,Paulo Eduardo Martins,PSC,PR
+1194260,camara,Nivaldo Albuquerque,PTB,AL
+1196358,camara,Lourival Gomes,PSL,RJ
+1198197,camara,Greyce Elias,AVANTE,MG
+1198783,camara,Emanuel Pinheiro Neto,PTB,MT
+1204351,camara,Dr. Luiz Ovando,PSL,MS
+1204352,camara,Camilo Capiberibe,PSB,AP
+1204353,camara,Aline Gurgel,REPUBLICANOS,AP
+1204354,camara,Flávia Arruda,PL,DF
+1204355,camara,Da Vitoria,CIDADANIA,ES
+1204356,camara,Amaro Neto,REPUBLICANOS,ES
+1204357,camara,Rose Modesto,PSDB,MS
+1204358,camara,Beto Pereira,PSDB,MS
+1204359,camara,Léo Moraes,PODE,RO
+1204360,camara,Silvia Cristina,PDT,RO
+1204361,camara,Carlos Chiodini,MDB,SC
+1204362,camara,Ricardo Guidi,PSD,SC
+1204363,camara,Osires Damaso,PSC,TO
+1204364,camara,Eli Borges,SOLIDARIEDADE,TO
+1204365,camara,Gilson Marques,NOVO,SC
+1204366,camara,Rodrigo Coelho,PSB,SC
+1204367,camara,Daniel Freitas,PSL,SC
+1204368,camara,Fabio Schiochet,PSL,SC
+1204369,camara,Caroline De Toni,PSL,SC
+1204370,camara,Célio Moura,PT,TO
+1204371,camara,Felipe Rigoni,PSB,ES
+1204372,camara,Julio Cesar Ribeiro,REPUBLICANOS,DF
+1204373,camara,Hélio Costa,REPUBLICANOS,SC
+1204374,camara,Bia Kicis,PSL,DF
+1204375,camara,Leda Sadala,AVANTE,AP
+1204376,camara,Coronel Armando,PSL,SC
+1204377,camara,Paula Belmonte,CIDADANIA,DF
+1204378,camara,Coronel Chrisóstomo,PSL,RO
+1204379,camara,Acácio Favacho,PROS,AP
+1204381,camara,Luis Miranda,DEM,DF
+1204382,camara,Loester Trutis,PSL,MS
+1204383,camara,Professor Israel Batista,PV,DF
+1204384,camara,Ney Leprevost,PSD,PR
+1204385,camara,Valdevan Noventa,PL,SE
+1204386,camara,Jose Mario Schreiner,DEM,GO
+1204387,camara,Sargento Fahur,PSD,PR
+1204388,camara,Bibo Nunes,PSL,RS
+1204389,camara,Elias Vaz,PSB,GO
+1204390,camara,Professor Alcides,PP,GO
+1204391,camara,José Nelto,PODE,GO
+1204392,camara,Francisco Jr.,PSD,GO
+1204393,camara,Frei Anastacio Ribeiro,PT,PB
+1204394,camara,Gervásio Maia,PSB,PB
+1204395,camara,Pedro Lupion,DEM,PR
+1204396,camara,Vermelho,PSD,PR
+1204397,camara,Boca Aberta,PROS,PR
+1204398,camara,Felipe Francischini,PSL,PR
+1204399,camara,Schiavinato,PP,PR
+1204400,camara,Aline Sleutjes,PSL,PR
+1204403,camara,Marlon Santos,PDT,RS
+1204404,camara,Lucas Redecker,PSDB,RS
+1204405,camara,Liziane Bayer,PSB,RS
+1204406,camara,Pedro Westphalen,PP,RS
+1204407,camara,Fernanda Melchionna,PSOL,RS
+1204408,camara,Gustinho Ribeiro,SOLIDARIEDADE,SE
+1204409,camara,Daniel Trzeciak,PSDB,RS
+1204410,camara,Luisa Canziani,PTB,PR
+1204411,camara,Filipe Barros,PSL,PR
+1204412,camara,Dr. Zacharias Calil,DEM,GO
+1204413,camara,Alcides Rodrigues,PATRIOTA,GO
+1204414,camara,Aroldo Martins,REPUBLICANOS,PR
+1204415,camara,Nereu Crispim,PSL,RS
+1204416,camara,Sanderson,PSL,RS
+1204418,camara,Luizão Goulart,REPUBLICANOS,PR
+1204419,camara,Glaustin Fokus,PSC,GO
+1204420,camara,Julian Lemos,PSL,PB
+1204421,camara,Edna Henrique,PSDB,PB
+1204422,camara,Ossesio Silva,REPUBLICANOS,PE
+1204423,camara,André Ferreira,PSC,PE
+1204425,camara,Silvio Costa Filho,REPUBLICANOS,PE
+1204426,camara,Carlos Veras,PT,PE
+1204427,camara,Fernando Rodolfo,PL,PE
+1204428,camara,Marília Arraes,PT,PE
+1204429,camara,João H. Campos,PSB,PE
+1204430,camara,Margarete Coelho,PP,PI
+1204431,camara,Marcos Aurélio Sampaio,MDB,PI
+1204432,camara,Marina Santos,SOLIDARIEDADE,PI
+1204433,camara,Marcelo Calero,CIDADANIA,RJ
+1204434,camara,Dra. Vanda Milani,SOLIDARIEDADE,AC
+1204435,camara,Jesus Sérgio,PDT,AC
+1204436,camara,Isnaldo Bulhões Jr.,MDB,AL
+1204437,camara,Severino Pessoa,REPUBLICANOS,AL
+1204438,camara,Sergio Toledo,PL,AL
+1204439,camara,Dr. Leonardo,SOLIDARIEDADE,MT
+1204440,camara,Christino Aureo,PP,RJ
+1204441,camara,Otoni De Paula,PSC,RJ
+1204442,camara,Gurgel,PSL,RJ
+1204444,camara,Helio Lopes,PSL,RJ
+1204446,camara,Professor Joziel,PSL,RJ
+1204447,camara,Flordelis,PSD,RJ
+1204448,camara,Luiz Antônio Corrêa,PL,RJ
+1204449,camara,Nelson Barbudo,PSL,MT
+1204450,camara,Dr. Luiz Antonio Teixeira Jr.,PP,RJ
+1204451,camara,Delegado Antônio Furtado,PSL,RJ
+1204452,camara,Márcio Labre,PSL,RJ
+1204453,camara,Natália Bonavides,PT,RN
+1204454,camara,Daniel Silveira,PSL,RJ
+1204455,camara,Luiz Lima,PSL,RJ
+1204456,camara,Gutemberg Reis,MDB,RJ
+1204457,camara,Juninho Do Pneu,DEM,RJ
+1204458,camara,Major Fabiana,PSL,RJ
+1204459,camara,Daniela Do Waguinho,MDB,RJ
+1204460,camara,Carlos Jordy,PSL,RJ
+1204461,camara,Paulo Ganime,NOVO,RJ
+1204462,camara,Chris Tonietto,PSL,RJ
+1204463,camara,Wladimir Garotinho,PSD,RJ
+1204464,camara,Talíria Petrone,PSOL,RJ
+1204465,camara,Haroldo Cathedral,PSD,RR
+1204466,camara,Tereza Nelma,PSDB,AL
+1204467,camara,Professora Rosa Neide,PT,MT
+1204468,camara,Joenia Wapichana,REDE,RR
+1204469,camara,Manuel Marcos,REPUBLICANOS,AC
+1204471,camara,Mara Rocha,PSDB,AC
+1204472,camara,José Medeiros,PODE,MT
+1204473,camara,General Girão,PSL,RN
+1204474,camara,Juarez Costa,MDB,MT
+1204475,camara,Ottaci Nascimento,SOLIDARIEDADE,RR
+1204476,camara,Chiquinho Brazão,AVANTE,RJ
+1204477,camara,Felício Laterça,PSL,RJ
+1204478,camara,Vinicius Farah,MDB,RJ
+1204479,camara,Nicoletti,PSL,RR
+1204480,camara,Rogério Correia,PT,MG
+1204481,camara,Dr. Jaziel,PL,CE
+1204482,camara,Euclydes Pettersen,PSC,MG
+1204483,camara,Vilson Da Fetaemg,PSB,MG
+1204484,camara,General Peternelli,PSL,SP
+1204485,camara,Luiz Carlos Motta,PL,SP
+1204486,camara,Mauro Benevides Filho,PDT,CE
+1204487,camara,Capitão Wagner,PROS,CE
+1204488,camara,Célio Studart,PV,CE
+1204489,camara,Robério Monteiro,PDT,CE
+1204490,camara,Charlles Evangelista,PSL,MG
+1204491,camara,Gilberto Abramo,REPUBLICANOS,MG
+1204492,camara,Paulo Guedes,PT,MG
+1204494,camara,Fred Costa,PATRIOTA,MG
+1204495,camara,Airton Faleiro,PT,PA
+1204496,camara,Celso Sabino,PSDB,PA
+1204497,camara,Júnior Ferrari,PSD,PA
+1204498,camara,Olival Marques,DEM,PA
+1204499,camara,Cássio Andrade,PSB,PA
+1204500,camara,Eduardo Costa,PTB,PA
+1204501,camara,Alencar Santana Braga,PT,SP
+1204502,camara,Júnior Bozzella,PSL,SP
+1204503,camara,Alexandre Padilha,PT,SP
+1204504,camara,Cezinha De Madureira,PSD,SP
+1204505,camara,Vavá Martins,REPUBLICANOS,PA
+1204506,camara,Marcos Pereira,REPUBLICANOS,SP
+1204507,camara,Carla Zambelli,PSL,SP
+1204508,camara,Igor Timo,PODE,MG
+1204509,camara,Áurea Carolina,PSOL,MG
+1204510,camara,Franco Cartafina,PP,MG
+1204511,camara,David Soares,DEM,SP
+1204512,camara,Delegado Marcelo Freitas,PSL,MG
+1204513,camara,Guiga Peixoto,PSL,SP
+1204514,camara,Coronel Tadeu,PSL,SP
+1204515,camara,André Janones,AVANTE,MG
+1204516,camara,Alexis Fonteyne,NOVO,SP
+1204517,camara,Zé Vitor,PL,MG
+1204518,camara,Dr. Frederico,PATRIOTA,MG
+1204519,camara,Tiago Mitraud,NOVO,MG
+1204520,camara,Junio Amaral,PSL,MG
+1204521,camara,Abou Anni,PSL,SP
+1204522,camara,Marco Bertaiolli,PSD,SP
+1204523,camara,Lucas Gonzalez,NOVO,MG
+1204524,camara,Pinheirinho,PP,MG
+1204525,camara,Rosana Valle,PSB,SP
+1204526,camara,Luiz Philippe De Orleans e Bragança,PSL,SP
+1204527,camara,Geninho Zuliani,DEM,SP
+1204528,camara,Adriana Ventura,NOVO,SP
+1204529,camara,Policial Katia Sastre,PL,SP
+1204530,camara,Rodrigo Agostinho,PSB,SP
+1204531,camara,Guilherme Derrite,PP,SP
+1204532,camara,Vinicius Poit,NOVO,SP
+1204533,camara,Idilvan Alencar,PDT,CE
+1204534,camara,Tabata Amaral,PDT,SP
+1204535,camara,Sâmia Bomfim,PSOL,SP
+1204536,camara,Kim Kataguiri,DEM,SP
+1204537,camara,Enrico Misasi,PV,SP
+1204538,camara,Paulo Bengtson,PTB,PA
+1204539,camara,Hercílio Coelho Diniz,MDB,MG
+1204540,camara,Maria Rosas,REPUBLICANOS,SP
+1204541,camara,Eduardo Bismarck,PDT,CE
+1204542,camara,Denis Bezerra,PSB,CE
+1204544,camara,Alexandre Frota,PSDB,SP
+1204545,camara,Alê Silva,PSL,MG
+1204546,camara,Joice Hasselmann,PSL,SP
+1204547,camara,Léo Motta,PSL,MG
+1204548,camara,Heitor Freire,PSL,CE
+1204549,camara,Aj Albuquerque,PP,CE
+1204550,camara,Júnior Mano,PL,CE
+1204551,camara,Bosco Saraiva,SOLIDARIEDADE,AM
+1204552,camara,Eduardo Braide,PODE,MA
+1204553,camara,Pastor Sargento Isidório,AVANTE,BA
+1204554,camara,Abílio Santana,PL,BA
+1204555,camara,José Ricardo,PT,AM
+1204556,camara,Marcelo Ramos,PL,AM
+1204557,camara,Sidney Leite,PSD,AM
+1204558,camara,Marcelo Nilo,PSB,BA
+1204559,camara,Zé Neto,PT,BA
+1204560,camara,Adolfo Viana,PSDB,BA
+1204561,camara,Bira Do Pindaré,PSB,MA
+1204562,camara,Edilázio Júnior,PSD,MA
+1204563,camara,Josimar Maranhãozinho,PL,MA
+1204564,camara,Igor Kannário,DEM,BA
+1204565,camara,Professora Dayane Pimentel,PSL,BA
+1204566,camara,Marreca Filho,PATRIOTA,MA
+1204567,camara,Raimundo Costa,PL,BA
+1204569,camara,Delegado Pablo,PSL,AM
+1204570,camara,Gildenemyr,PL,MA
+1204571,camara,Alex Santana,PDT,BA
+1204572,camara,Capitão Alberto Neto,REPUBLICANOS,AM
+1204573,camara,Otto Alencar Filho,PSD,BA
+1204575,camara,Gil Cutrim,PDT,MA
+1204576,camara,João Roma,REPUBLICANOS,BA
+1205476,camara,Charles Fernandes,PSD,BA
+1205548,camara,David Miranda,PSOL,RJ
+1205550,camara,Jorge Braz,REPUBLICANOS,RJ
+1205863,camara,Marcelo Brum,PSL,RS
+1206231,camara,Ted Conti,PSB,ES
+1207176,camara,Bia Cavassa,PSDB,MS
+1207309,camara,Enéias Reis,PSL,MG
+1209189,camara,Joseildo Ramos,PT,BA
+1212749,camara,Marcão Gomes,PL,RJ
+1213274,camara,Ricardo Silva,PSB,SP
+1213679,camara,Dr. João,PROS,BA
+1213762,camara,Carla Dickson,PROS,RN
+1213856,camara,Deuzinho Filho,REPUBLICANOS,CE
