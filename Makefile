@@ -8,7 +8,7 @@ help:
 	@echo "COMANDOS:"
 	@echo "\t$(b)help$(s) \t\t\t\t\tMostra esta mensagem de ajuda"
 	@echo "\t$(b)bd-container-shell$(s) \t\t\tAbre o shell do BD Postgres local. É preciso que o container com o BD esteja executando."
-	@echo "\t$(b)bd-container-shell$(s) \t\t\tAbre o shell do BD Postgres local. É preciso que o container com o BD esteja executando."
+	@echo "\t$(b)feed-db-shell$(s) \t\t\tAbre o shell do BD configurado no arquivo .env na raiz do repositório"
 .PHONY: help
 bd-container-shell:
 	docker exec -it postgres-leggo-twitter psql -d leggotwitter -U postgres
