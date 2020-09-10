@@ -17,6 +17,22 @@ services:
       - 7688:5432
     networks:
       - twitternet
+  
+  feed:
+    build:
+      context: feed/
+    container_name: feed-leggo-twitter
+    image: feed-leggo-twitter-image
+    env_file:
+      - .env
+    volumes:
+      - ./feed:/code
+    ports:
+      - 7689:7689
+    depends_on:
+      - postgres
+    networks:
+      - twitternet
 
 networks:
   twitternet:
