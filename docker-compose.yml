@@ -36,7 +36,8 @@ services:
 
 networks:
   twitternet:
-    name: leggo_twitter_network
+    external:
+      name: leggo_twitter_network
       
 volumes:
   leggo_twitter_data:
