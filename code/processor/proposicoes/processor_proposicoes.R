@@ -12,7 +12,7 @@ process_proposicoes <-
     proposicoes <- proposicoes %>% 
       select(id_proposicao_leggo = id_proposicao, casa, casa_origem, sigla) %>% 
       mutate(casa_origem = if_else(casa_origem == 'nan', as.character(NA), casa_origem)) %>% 
-      distinct()
+      distinct(id_proposicao_leggo, .keep_all = TRUE)
     
     return(proposicoes)
   }
