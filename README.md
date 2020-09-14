@@ -26,13 +26,26 @@ docker-compose up
 
 ### Configuração
 
-#### Configuração do Banco de dados local
+#### **Configuração do Banco de dados local**
 É possível setar as variáveis de ambiente usadas para a criação do banco de dados local.
 
 a) Crie uma cópia do arquivo .env.sample no diretório raiz desse repositório e renomeie para .env (deve também estar no diretório raiz desse repositório)
 
 b) Preencha as variáveis contidas no .env.sample também para o .env. Altere os valores conforme sua necessidade. Atente que se você está usando o banco local, o valor da variável POSTGRES_HOST deve ser postgres, que é o nome do serviço que será levantado pelo docker-compose.
 
+#### **Importe os dados**
+
+Se ainda não criou as tabelas do BD:
+
+```
+make feed-create-tables
+```
+
+Para atualizar e importar os dados execute:
+
+```
+make feed-update-data
+```
 
 ### Ajuda
 

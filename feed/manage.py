@@ -28,6 +28,23 @@ def create_tables():
     execute_migration('/code/scripts/create/create_agenda_proposicao.sql')
 
 @click.command()
+def import_data():
+    """Importa os dados dos csvs para as tabelas no banco de dados"""
+    execute_migration('/code/scripts/import/import_dados.sql')
+
+@click.command()
+def update_data():
+    """Atualiza os dados dos csvs para as tabelas no banco de dados"""
+    execute_migration('/code/scripts/update/update_parlamentar.sql')
+    execute_migration('/code/scripts/update/update_tweet.sql')
+    execute_migration('/code/scripts/update/update_proposicao.sql')
+    execute_migration('/code/scripts/update/update_tweet_proposicao.sql')
+    execute_migration('/code/scripts/update/update_tema.sql')
+    execute_migration('/code/scripts/update/update_tema_proposicao.sql')
+    execute_migration('/code/scripts/update/update_agenda.sql')
+    execute_migration('/code/scripts/update/update_agenda_proposicao.sql')
+
+@click.command()
 def drop_tables():
     """Atenção: Dropa as tabelas no banco de dados"""
 
@@ -46,6 +63,8 @@ def shell():
 
 cli.add_command(shell)
 cli.add_command(create_tables)
+cli.add_command(import_data)
+cli.add_command(update_data)
 cli.add_command(drop_tables)
 
 if __name__ == '__main__':
