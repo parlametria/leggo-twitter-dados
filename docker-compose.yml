@@ -27,6 +27,7 @@ services:
       - .env
     volumes:
       - ./feed:/code
+      - ./data:/data
     ports:
       - 7689:7689
     depends_on:

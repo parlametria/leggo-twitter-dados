@@ -6,14 +6,16 @@ library(tidyverse)
 #' @param proposicoes Dataframe de proposições
 #' @return Dataframe com proposições distintas
 .remove_ambiguidade_siglas <- function(proposicoes) {
-  proposicoes_sem_ambuguidade <- proposicoes %>%
-    select(id_proposicao_leggo, sigla) %>%
-    distinct(id_proposicao_leggo, .keep_all = T)
-  
-  proposicoes_sem_ambuguidade <- proposicoes_sem_ambuguidade %>% 
+
+  proposicoes_sem_ambiguidade <- proposicoes %>% 
+    select(id_proposicao_leggo = id_proposicao, sigla) %>% 
     mutate(
       sigla_sem_ano = str_remove(sigla, "\\/\\d.*"),
-      ano = str_extract(sigla, "\\/\\d.*") %>% str_remove("\\/")
+      ano = str_extract(sigla, "\\/\\d.*") %>% str_remove("\\/"),
+      ## TODO: remover linha abaixo quando o ano da PL 669/2019 estiver resolvido
+      ano = if_else(id_proposicao_leggo == "9104fcae3c644d1e87007b78bebd26b9",
+                    "2019",
+                    ano)
     ) %>%
     group_by(sigla_sem_ano) %>%
     mutate(max_ano = max(ano)) %>%
@@ -23,11 +25,11 @@ library(tidyverse)
         ano == max_ano, 
         id_proposicao_leggo, 
         as.character(NA))) %>%
-    filter(!is.na(id_proposicao_leggo)) %>% 
+    filter(!is.na(id_proposicao_leggo)) %>%
     select(id_proposicao_leggo, sigla = sigla_sem_ano) %>% 
     distinct()
   
-  return(proposicoes_sem_ambuguidade)
+  return(proposicoes_sem_ambiguidade)
 }
 #' @title Processa os dados dos tweets no formato do banco.
 #' @description Retorna os dados dos tweets processados.
@@ -73,12 +75,12 @@ process_tweets <-
 #' @title Processa os dados do mapeamento de tweets e proposições no formato do banco.
 #' @description Retorna os dados do mapeamento de tweets e proposiçõeprocessados.
 #' @param tweets_datapath Caminho para o csv de tweets
-#' @param proposicoes_datapath Caminho para o csv de proposições
+#' @param proposicoes_datapath Caminho para o csv de proposições (sem o processamento para o BD)
 #' @return Dataframe com informações processadas do mapeamento de tweets e proposições
 process_tweets_proposicoes <-
   function(tweets_datapath = here::here("data/tweets/tweets.csv"),
            tweets_processados_datapath = here::here("data/bd/tweets/tweets.csv"),
-           proposicoes_datapath = here::here("data/bd/proposicoes/proposicoes.csv")) {
+           proposicoes_datapath = here::here("data/proposicoes/proposicoes.csv")) {
     
     tweets_com_parlamentares_em_exercicio <-
       read_csv(tweets_processados_datapath, col_types = "cccccicddddddd") %>%
