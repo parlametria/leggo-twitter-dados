@@ -42,5 +42,5 @@ r-export-data:
 	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/export_data.R"
 .PHONY: r-export-data
 r-export-data-db-format:
-	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/export_data.R"
+	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/processor/export_data_to_db_format.R"
 .PHONY: r-export-data-db-format
