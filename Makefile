@@ -13,6 +13,9 @@ help:
 	@echo "\t$(b)feed-import-data$(s) \t\t\tImporta dados para as tabelas para o Banco de dados"
 	@echo "\t$(b)feed-update-data$(s) \t\t\tAtualiza dados para as tabelas para o Banco de dados"
 	@echo "\t$(b)feed-drop-tables$(s) \t\t\t Atenção: Dropa as Tabelas para o Banco de dados"
+	@echo "\t$(b)r-shell$(s) \t\t\t Abre uma instância bash dentro do container do r-leggo-twitter"
+	@echo "\t$(b)r-export-data$(s) \t\t\t Executa o processamento de dados (fetchers) para Proposições, parlamentares e tweets"
+	@echo "\t$(b)r-export-data-db-format$(s) \t\t\t Executa o processamentos dos dados para o formato do BD"
 .PHONY: help
 bd-container-shell:
 	docker exec -it postgres-leggo-twitter psql -d leggotwitter -U postgres
@@ -32,3 +35,12 @@ feed-update-data:
 feed-drop-tables:
 	docker-compose run --no-deps --rm feed python manage.py drop-tables
 .PHONY: feed-drop-tables
+r-shell:
+	docker exec -it r-leggo-twitter bash
+.PHONY: r-shell
+r-export-data:
+	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/export_data.R"
+.PHONY: r-export-data
+r-export-data-db-format:
+	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/export_data.R"
+.PHONY: r-export-data-db-format

@@ -47,6 +47,26 @@ Para atualizar e importar os dados execute:
 make feed-update-data
 ```
 
+### Como processar os dados
+
+Nesta seção apresentaremos dois comandos úteis para o processamento dos dados usados pelo Banco de Dados do repositório.
+
+1. A primeira etapa do processamento envolve capturar, processar e salvar os dados de proposições, parlamentares e tweets. Para isto é possível executar o comando:
+
+```
+make r-export-data
+```
+
+Todos os dados serão salvos na pasta `data/` conforme o módulo ao qual pertence.
+
+2. A segunda etapa do processamento trata de preparar os dados para o formato do BD do leggo-twitter. Neste caso o comando executado é:
+
+```
+make r-export-data-db-format
+```
+
+Os dados já prontos para serem importados par ao BD estarão presentes em `data/bd`
+
 ### Ajuda
 
 Acesse o Makefile para obter ajuda sobre os comandos que podem ser executados no repositório
