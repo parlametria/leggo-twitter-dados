@@ -34,6 +34,19 @@ services:
       - postgres
     networks:
       - twitternet
+  
+  r-twitter-service:
+    build:
+      context: .
+    container_name: r-leggo-twitter
+    image: r-leggo-twitter-image
+    environment:
+      - PASSWORD=${PASSWORD:-secret}
+    volumes:
+      - ./code:/leggo-twitter-dados/code
+      - ./data:/leggo-twitter-dados/data
+    networks:
+      - twitternet
 
 networks:
   twitternet:
