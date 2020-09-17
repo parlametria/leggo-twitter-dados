@@ -6,11 +6,8 @@ services:
     image: postgres:12.4-alpine
     container_name: postgres-leggo-twitter
     restart: unless-stopped
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB:-leggotwitter}
-      - POSTGRES_USER=${POSTGRES_USER:-postgres}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secret}
-      - TZ=GMT
+    env_file:
+      - ${TWITTER_API_DADOS_PATH:-.}/.env
     volumes:
       - leggo_twitter_data:/var/lib/postgresql/data/
     ports:
@@ -20,14 +17,14 @@ services:
   
   feed:
     build:
-      context: feed/
+      context: ${TWITTER_API_DADOS_PATH:-.}/feed
     container_name: feed-leggo-twitter
     image: feed-leggo-twitter-image
     env_file:
-      - .env
+      - ${TWITTER_API_DADOS_PATH:-.}/.env
     volumes:
-      - ./feed:/code
-      - ./data:/data
+      - ${TWITTER_API_DADOS_PATH:-.}/feed:/code
+      - ${TWITTER_API_DADOS_PATH:-.}/data:/data
     ports:
       - 7689:7689
     depends_on:
@@ -37,14 +34,14 @@ services:
   
   r-twitter-service:
     build:
-      context: .
+      context: ${TWITTER_API_DADOS_PATH:-.}
     container_name: r-leggo-twitter
     image: r-leggo-twitter-image
     environment:
       - PASSWORD=${PASSWORD:-secret}
     volumes:
-      - ./code:/leggo-twitter-dados/code
-      - ./data:/leggo-twitter-dados/data
+      - ${TWITTER_API_DADOS_PATH:-.}/code:/leggo-twitter-dados/code
+      - ${TWITTER_API_DADOS_PATH:-.}/data:/leggo-twitter-dados/data
     networks:
       - twitternet
 
