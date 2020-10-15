@@ -10,7 +10,7 @@ fetch_relatores_proposicoes_by_agenda <-
     print(paste0("Baixando Relatores de proposições da agenda ", agenda, "..."))
     
     url <-
-      paste0("http://agorapi:8000/relatores/?interesse=",
+      paste0("https://api.leggo.org.br/relatores/?interesse=",
              agenda)
     
     df <-
