@@ -8,7 +8,7 @@ CREATE TEMP TABLE temp_tweet_proposicao AS SELECT * FROM tweet_proposicao LIMIT 
 INSERT INTO tweet_proposicao
 SELECT *
 FROM temp_tweet_proposicao
-ON CONFLICT (id_tweet, id_proposicao_leggo)
+ON CONFLICT (id_tweet, id_proposicao_leggo, relator_proposicao)
 DO
   UPDATE
   SET 
