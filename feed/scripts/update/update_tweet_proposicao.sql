@@ -12,7 +12,7 @@ ON CONFLICT (id_tweet, id_proposicao_leggo)
 DO
   UPDATE
   SET 
-    sigla = EXCLUDED.sigla;
+    sigla = EXCLUDED.sigla,
     relator_proposicao = EXCLUDED.relator_proposicao;
 
 DROP TABLE temp_tweet_proposicao;
