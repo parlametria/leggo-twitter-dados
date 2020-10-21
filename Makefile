@@ -16,6 +16,7 @@ help:
 	@echo "\t$(b)r-shell$(s) \t\t\t Abre uma instância bash dentro do container do r-leggo-twitter"
 	@echo "\t$(b)r-export-data$(s) \t\t\t Executa o processamento de dados (fetchers) para Proposições, parlamentares e tweets"
 	@echo "\t$(b)r-export-data-db-format$(s) \t\t\t Executa o processamentos dos dados para o formato do BD"
+	@echo "\t$(b)feed-do-migrations$(s) \t\t\tAtualiza as tabelas para o Banco de dados"
 .PHONY: help
 bd-container-shell:
 	docker exec -it postgres-leggo-twitter psql -d leggotwitter -U postgres
@@ -44,3 +45,6 @@ r-export-data:
 r-export-data-db-format:
 	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/processor/export_data_to_db_format.R"
 .PHONY: r-export-data-db-format
+feed-do-migrations:
+	docker-compose run --no-deps --rm feed python manage.py do-migrations
+.PHONY: feed-do-migrations

@@ -1,0 +1,7 @@
+-- TWEET PROPOSIÇÃO
+BEGIN;
+
+ALTER TABLE tweet_proposicao
+ADD COLUMN IF NOT EXISTS "relator_proposicao" BOOLEAN;
+
+COMMIT;

@@ -75,16 +75,19 @@ process_tweets <-
 #' @title Processa os dados do mapeamento de tweets e proposições no formato do banco.
 #' @description Retorna os dados do mapeamento de tweets e proposiçõeprocessados.
 #' @param tweets_datapath Caminho para o csv de tweets
+#' @param tweets_processados_datapath Caminho para o csv de tweets processados
 #' @param proposicoes_datapath Caminho para o csv de proposições (sem o processamento para o BD)
+#' @param relatorias_datapath Caminho para o csv de relatorias
 #' @return Dataframe com informações processadas do mapeamento de tweets e proposições
 process_tweets_proposicoes <-
   function(tweets_datapath = here::here("data/tweets/tweets.csv"),
            tweets_processados_datapath = here::here("data/bd/tweets/tweets.csv"),
-           proposicoes_datapath = here::here("data/proposicoes/proposicoes.csv")) {
+           proposicoes_datapath = here::here("data/proposicoes/proposicoes.csv"),
+           relatorias_datapath = here::here("data/relatorias/relatorias.csv")) {
     
     tweets_com_parlamentares_em_exercicio <-
       read_csv(tweets_processados_datapath, col_types = "cccccicddddddd") %>%
-      select(id_tweet) %>%
+      select(id_tweet, id_parlamentar_parlametria) %>%
       distinct()
     
     tweets <-
@@ -98,10 +101,16 @@ process_tweets_proposicoes <-
       .remove_ambiguidade_siglas() %>% 
       mutate(sigla = str_replace(sigla, "MPV", "MP"))
     
+    relatorias <- read_csv(relatorias_datapath, col_types = cols(.default = "c"))
+    
     tweets_proposicoes <- tweets %>%
       left_join(proposicoes, by = c("sigla")) %>%
       filter(!is.na(id_tweet),!is.na(id_proposicao_leggo)) %>%
-      distinct()
-    
+      distinct() %>% 
+      left_join(relatorias, by = c("id_parlamentar_parlametria",
+                                   "id_proposicao_leggo" = "id_proposicao")) %>% 
+      mutate(relator_proposicao = !is.na(casa)) %>% 
+      select(id_tweet, sigla, id_proposicao_leggo, relator_proposicao)
+
     return(tweets_proposicoes)
   }
