@@ -61,11 +61,17 @@ def shell():
     """Acessa terminal do banco de dados"""
     subprocess.run(['psql', '-h', host, '-U', user, '-d', db])
 
+@click.command()
+def do_migrations():
+    """Atualiza as tabelas para o Banco de dados"""
+    execute_migration('/code/scripts/migrations/0001_tweet_proposicao.sql')
+
 cli.add_command(shell)
 cli.add_command(create_tables)
 cli.add_command(import_data)
 cli.add_command(update_data)
 cli.add_command(drop_tables)
+cli.add_command(do_migrations)
 
 if __name__ == '__main__':
     cli()
