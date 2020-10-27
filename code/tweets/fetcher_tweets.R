@@ -14,8 +14,7 @@ fetch_mencoes_congresso_remoto <- function() {
   
   tweets <- tweets %>% 
     select(-c(nome_eleitoral, partido, uf)) %>% 
-    mutate(casa = iconv(casa, to="ASCII//TRANSLIT")) %>% 
-    rename(id_tweet = status_id)
+    mutate(casa = iconv(casa, to="ASCII//TRANSLIT"))
   
   return(tweets)
 }
