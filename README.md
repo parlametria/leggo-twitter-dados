@@ -35,6 +35,10 @@ b) Preencha as variáveis contidas no .env.sample também para o .env. Altere os
 
 #### **Importe os dados**
 
+Alguns arquivos grandes são necessários e estão fora desse repositório. É necessário baixá-los antes da dos passos seguinte. São eles:
+
+* [Tweets dos parlamentares](https://drive.google.com/file/d/1oWKpA0CHVSKQp2XI8GI3gSRTKydsGFg5/view?usp=sharing)
+
 Se ainda não criou as tabelas do BD:
 
 ```
