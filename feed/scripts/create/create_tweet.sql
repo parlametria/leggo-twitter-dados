@@ -8,13 +8,6 @@ CREATE TABLE IF NOT EXISTS "tweet" (
     "text" TEXT,
     "interactions" REAL,
     "url" TEXT,
-    "outrage" REAL,
-    "vagueness" REAL,
-    "argumentation" REAL,
-    "modalization" REAL,
-    "valuation" REAL,
-    "sentiment" REAL,
-    "presupposition" REAL,
     PRIMARY KEY("id_tweet"),
     FOREIGN KEY ("id_parlamentar_parlametria") REFERENCES parlamentar ("id_parlamentar_parlametria") ON DELETE CASCADE ON UPDATE CASCADE
 );
