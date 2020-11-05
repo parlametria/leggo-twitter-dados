@@ -22,7 +22,7 @@ saida <- opt$out
 
 message("Iniciando processamento de proposições...")
 message("Baixando dados...")
-proposicoes <- fetch_proposicoes()
+proposicoes <- fetch_proposicoes_todas_agendas()
 
 message(paste0("Salvando o resultado em ", saida))
 write_csv(proposicoes, saida)
