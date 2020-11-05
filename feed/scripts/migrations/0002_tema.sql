@@ -1,4 +1,4 @@
--- TWEET PROPOSIÇÃO
+-- TEMA
 BEGIN;
 
 ALTER TABLE tema
