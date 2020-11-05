@@ -1,5 +1,5 @@
 #' @title Baixa as proposições por agenda
-#' @description Recebe uma agenda e retornas as proposições monitoradas pelo
+#' @description Recebe uma agenda e retorna as proposições monitoradas pelo
 #' Leggo com essa agenda.
 #' @param agenda Agenda de interesse (obs: sem acentos e espaços,
 #' ex: reforma-tributaria)

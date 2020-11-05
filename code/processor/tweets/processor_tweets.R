@@ -42,10 +42,9 @@ process_tweets <-
     source(here::here("code/processor/parlamentares/processor_parlamentares.R"))
     
     tweets <-
-      read_csv(tweets_datapath, col_types = "cccccidddddddccc") %>%
+      read_csv(tweets_datapath, col_types = "ccccccccc") %>%
       .generate_id_parlamentar_parlametria() %>%
-      select(-c(id_parlamentar, casa, citadas)) %>%
-      distinct()
+      select(-c(id_parlamentar, casa))
     
     parlamentares <-
       read_csv(parlamentares_datapath, col_types = cols(.default = "c"))
@@ -59,14 +58,7 @@ process_tweets <-
         created_at,
         text,
         interactions,
-        url = status_url,
-        outrage,
-        vagueness,
-        argumentation,
-        modalization,
-        valuation,
-        sentiment,
-        presupposition
+        url = status_url
       )
     
     return(tweets)
@@ -86,12 +78,12 @@ process_tweets_proposicoes <-
            relatorias_datapath = here::here("data/relatorias/relatorias.csv")) {
     
     tweets_com_parlamentares_em_exercicio <-
-      read_csv(tweets_processados_datapath, col_types = "cccccicddddddd") %>%
+      read_csv(tweets_processados_datapath, col_types = "ccccccc") %>%
       select(id_tweet, id_parlamentar_parlametria) %>%
       distinct()
     
     tweets <-
-      read_csv(tweets_datapath, col_types = "cccccidddddddccc") %>%
+      read_csv(tweets_datapath, col_types = "ccccccccc") %>%
       select(id_tweet, sigla = citadas) %>%
       distinct() %>%
       inner_join(tweets_com_parlamentares_em_exercicio, by = "id_tweet")
@@ -104,7 +96,7 @@ process_tweets_proposicoes <-
     relatorias <- read_csv(relatorias_datapath, col_types = cols(.default = "c"))
     
     tweets_proposicoes <- tweets %>%
-      left_join(proposicoes, by = c("sigla")) %>%
+      inner_join(proposicoes, by = c("sigla")) %>%
       filter(!is.na(id_tweet),!is.na(id_proposicao_leggo)) %>%
       distinct() %>% 
       left_join(relatorias, by = c("id_parlamentar_parlametria",

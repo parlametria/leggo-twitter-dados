@@ -20,7 +20,7 @@ opt = parse_args(opt_parser)
 
 saida <- opt$out
 
-message("Iniciando processamento...")
+message("Iniciando processamento de relatorias...")
 message("Baixando dados...")
 relatorias <- fetch_relatores_proposicoes_by_agenda()
 
