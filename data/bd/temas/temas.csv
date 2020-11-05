@@ -1,14 +1,8 @@
 id,nome,slug
-1,Outros,outros
-2,Transparência E Integridade,transparencia-e-integridade
-3,Direitos Humanos,direitos-humanos
-4,Migração E Refúgio,migracao-e-refugio
-5,Trabalho Decente,trabalho-decente
-6,Desenvolvimento Socioambiental,desenvolvimento-socioambiental
-7,Educação,educacao
-8,Segurança Pública,seguranca-publica
-9,Defesa E Segurança,defesa-e-seguranca
-10,Direito Penal E Processual Penal,direito-penal-e-processual-penal
-11,Direitos Humanos E Minorias,direitos-humanos-e-minorias
-12,Nova Economia,nova-economia
-13,Saúde,saude
+1,Meio Ambiente,meio-ambiente
+2,Direitos Humanos,direitos-humanos
+3,Agenda Nacional,agenda-nacional
+4,Educação,educacao
+5,Integridade E Transparência,integridade-e-transparencia
+6,Transparência E Integridade,transparencia-e-integridade
+7,Transparência,transparencia
