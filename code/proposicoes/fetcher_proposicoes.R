@@ -46,7 +46,6 @@ fetch_proposicoes_by_agenda <-
 #' @return Dataframe com informações das proposições.
 fetch_proposicoes_todas_agendas <- function() {
   library(tidyverse)
-  source(here::here("code/proposicoes/constants_proposicoes.R"))
   
   agendas <- RCurl::getURL("https://api.leggo.org.br/interesses") %>% 
     jsonlite::fromJSON() %>% 
