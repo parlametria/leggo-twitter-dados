@@ -17,14 +17,7 @@ DO
     created_at = EXCLUDED.created_at,
     text = EXCLUDED.text,
     interactions = EXCLUDED.interactions,
-    url = EXCLUDED.url,
-    outrage = EXCLUDED.outrage,
-    vagueness = EXCLUDED.vagueness,
-    argumentation = EXCLUDED.argumentation,
-    modalization = EXCLUDED.modalization,
-    valuation = EXCLUDED.valuation,
-    sentiment = EXCLUDED.sentiment,
-    presupposition = EXCLUDED.presupposition;
+    url = EXCLUDED.url;
 
 DROP TABLE temp_tweet;
 
