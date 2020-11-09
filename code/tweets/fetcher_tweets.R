@@ -17,7 +17,8 @@
 .get_id_tweet <- function(df) {
   df <- df %>% 
     rowwise(.) %>% 
-    mutate(id_tweet = str_split(status_url, "/")[[1]][6])
+    mutate(id_tweet = str_split(status_url, "/")[[1]][6]) %>% 
+    ungroup()
   return(df)
 }
 
@@ -32,11 +33,13 @@ fetch_tweets <- function() {
   
   tweets_todos <- read_csv(here::here("data/tweets/tweets_parlamentares_todos.zip"), col_types = cols(.default = "c")) %>% 
     .preprocess_tweets(c("id_parlamentar", "casa", "username", "created_at", "text", "interactions", "status_url")) %>% 
-    .get_id_tweet()
+    .get_id_tweet() %>% 
+    distinct(id_tweet, .keep_all = TRUE)
   tweets_com_mencoes <- read_csv(.URL_MENCOES_CR, col_types = cols(.default = "c")) %>% 
     .preprocess_tweets(c("id_parlamentar", "casa", "username", "created_at", "text", "interactions", "status_url", "id_tweet", "citadas"))
   
-  tweets <- bind_rows(tweets_todos, tweets_com_mencoes)
+  tweets <- bind_rows(tweets_todos, tweets_com_mencoes) %>% 
+    distinct(id_tweet, citadas, .keep_all = TRUE)
   
   return(tweets)
 }

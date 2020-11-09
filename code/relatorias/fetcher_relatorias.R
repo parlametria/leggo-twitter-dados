@@ -7,7 +7,7 @@ fetch_relatores_proposicoes_by_agenda <-
   function(agenda = "congresso-remoto") {
     library(tidyverse)
     
-    print(paste0("Baixando Relatores de proposições da agenda ", agenda, "..."))
+    print(paste0("Baixando relatores de proposições da agenda ", agenda, "..."))
     
     url <-
       paste0("https://api.leggo.org.br/relatores/?interesse=",
@@ -25,3 +25,18 @@ fetch_relatores_proposicoes_by_agenda <-
     
     return(relatores)
   }
+
+#' @title Recupera as relatorias das proposições de todas as agendas
+#' @description Retorna relatorias de proposições de todas as agendas
+#' @return Dataframe com informações dos relatores das proposições de todas as agendas.
+fetch_relatores_proposicoes_todas_agendas <- function() {
+  library(tidyverse)
+  
+  agendas <- RCurl::getURL("http://dev.api.leggo.org.br/interesses") %>% 
+    jsonlite::fromJSON() %>% 
+    select(interesse)
+  
+  relatores <- purrr::map_df(agendas$interesse, 
+                               ~ fetch_relatores_proposicoes_by_agenda(.x))
+  return(relatores)
+}
