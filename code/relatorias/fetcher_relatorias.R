@@ -37,6 +37,7 @@ fetch_relatores_proposicoes_todas_agendas <- function() {
     select(interesse)
   
   relatores <- purrr::map_df(agendas$interesse, 
-                               ~ fetch_relatores_proposicoes_by_agenda(.x))
+                               ~ fetch_relatores_proposicoes_by_agenda(.x)) %>% 
+    distinct()
   return(relatores)
 }
