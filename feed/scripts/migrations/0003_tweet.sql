@@ -1,0 +1,12 @@
+-- TWEET
+BEGIN;
+
+ALTER TABLE tweet
+DROP COLUMN IF EXISTS "vagueness",
+DROP COLUMN IF EXISTS "argumentation",
+DROP COLUMN IF EXISTS "modalization",
+DROP COLUMN IF EXISTS "valuation",
+DROP COLUMN IF EXISTS "sentiment",
+DROP COLUMN IF EXISTS "presupposition";
+
+COMMIT;
