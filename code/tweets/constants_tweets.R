@@ -1,1 +1,1 @@
-.URL_MENCOES_CR <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkC_mEvLxbGxIfwpn8BGn2D15DPWleMeL-dRINuVofUqRdrQziPM7xh3CP-VAVfKYjwMdHs4Yxhazx/pub?gid=572657395&single=true&output=csv"
+.URL_MENCOES_CR <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkC_mEvLxbGxIfwpn8BGn2D15DPWleMeL-dRINuVofUqRdrQziPM7xh3CP-VAVfKYjwMdHs4Yxhazx/pub?gid=1318407739&single=true&output=csv"

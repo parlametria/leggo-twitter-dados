@@ -6,7 +6,7 @@
     tolower()
   
   df <- df %>% 
-    select(selected_columns) %>% 
+    select(all_of(selected_columns)) %>% 
     mutate(casa = iconv(casa, to="ASCII//TRANSLIT"))
   return(df)
 }
