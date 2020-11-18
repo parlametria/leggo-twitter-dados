@@ -1,14 +1,54 @@
 id,nome,slug
 1,Outros,outros
-2,Transparência E Integridade,transparencia-e-integridade
-3,Direitos Humanos,direitos-humanos
-4,Migração E Refúgio,migracao-e-refugio
+2,Direitos Humanos,direitos-humanos
+3,Educação,educacao
+4,Transparência E Integridade,transparencia-e-integridade
 5,Trabalho Decente,trabalho-decente
-6,Desenvolvimento Socioambiental,desenvolvimento-socioambiental
-7,Educação,educacao
-8,Segurança Pública,seguranca-publica
-9,Defesa E Segurança,defesa-e-seguranca
-10,Direito Penal E Processual Penal,direito-penal-e-processual-penal
+6,Nova Economia,nova-economia
+7,Desenvolvimento Socioambiental,desenvolvimento-socioambiental
+8,"Viação, Transporte E Mobilidade","viacao,-transporte-e-mobilidade"
+9,Segurança Pública,seguranca-publica
+10,Migração E Refúgio,migracao-e-refugio
 11,Direitos Humanos E Minorias,direitos-humanos-e-minorias
-12,Nova Economia,nova-economia
-13,Saúde,saude
+12,Saúde,saude
+13,Finanças Públicas E Orçamento,financas-publicas-e-orcamento
+14,Previdência E Assistência Social,previdencia-e-assistencia-social
+15,Defesa E Segurança,defesa-e-seguranca
+16,Direito Penal E Processual Penal,direito-penal-e-processual-penal
+17,Prioritário,prioritario
+18,"Política, Partidos E Eleições","politica,-partidos-e-eleicoes"
+19,Administração Pública,administracao-publica
+20,Comunicações,comunicacoes
+21,"Ciência, Tecnologia E Inovação","ciencia,-tecnologia-e-inovacao"
+22,Processo Legislativo E Atuação Parlamentar,processo-legislativo-e-atuacao-parlamentar
+23,Não Especificado,nao-especificado
+24,Relações Internacionais E Comércio Exterior,relacoes-internacionais-e-comercio-exterior
+25,Direito Constitucional,direito-constitucional
+26,Direito E Justiça,direito-e-justica
+27,Economia,economia
+28,Direito Civil E Processual Civil,direito-civil-e-processual-civil
+29,"Indústria, Comércio E Serviços","industria,-comercio-e-servicos"
+30,Cidades E Desenvolvimento Urbano,cidades-e-desenvolvimento-urbano
+31,Direito E Defesa Do Consumidor,direito-e-defesa-do-consumidor
+32,Trabalho E Emprego,trabalho-e-emprego
+33,"Agricultura, Pecuária, Pesca E Extrativismo","agricultura,-pecuaria,-pesca-e-extrativismo"
+34,Meio Ambiente E Desenvolvimento Sustentável,meio-ambiente-e-desenvolvimento-sustentavel
+35,"Arte, Cultura E Religião","arte,-cultura-e-religiao"
+36,Integridade E Transparência,integridade-e-transparencia
+37,Meio Ambiente,meio-ambiente
+38,Agenda Nacional,agenda-nacional
+39,Transparência,transparencia
+40,Parentalidade,parentalidade
+41,Segurança E Proteção,seguranca-e-protecao
+42,Educação Infantil,educacao-infantil
+43,Aprendizagem Inicial,aprendizagem-inicial
+44,Nutrição Adequada,nutricao-adequada
+45,"Educação Infantil, Segurança E Proteção","educacao-infantil,-seguranca-e-protecao"
+46,Cuidados Responsivos,cuidados-responsivos
+47,Parentallidade,parentallidade
+48,Parenalidade,parenalidade
+49,Saúde E Segurança,saude-e-seguranca
+50,Social,social
+51,Osc,osc
+52,Socioambiental,socioambiental
+53,Geral,geral

@@ -1,2 +1,5 @@
 .Rhistory
 .env
+
+# Arquivos grandes demais para manter no repo
+data/tweets/tweets_parlamentares_todos.zip

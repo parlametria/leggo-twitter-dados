@@ -20,9 +20,9 @@ opt = parse_args(opt_parser)
 
 saida <- opt$out
 
-message("Iniciando processamento...")
+message("Iniciando processamento de tweets...")
 message("Baixando dados...")
-tweets <- fetch_mencoes_congresso_remoto()
+tweets <- fetch_tweets()
 
 message(paste0("Salvando o resultado em ", saida))
 write_csv(tweets, saida)

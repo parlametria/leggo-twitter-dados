@@ -20,7 +20,7 @@ opt = parse_args(opt_parser)
 
 saida <- opt$out
 
-message("Iniciando processamento...")
+message("Iniciando processamento de parlamentares...")
 message("Baixando dados...")
 parlamentares <- fetch_parlamentares_em_exercicio()
 

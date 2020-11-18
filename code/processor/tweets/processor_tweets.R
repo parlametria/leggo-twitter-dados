@@ -31,6 +31,19 @@ library(tidyverse)
   
   return(proposicoes_sem_ambiguidade)
 }
+
+#' @title Remove o ponto da sigla das proposições citadas nos tweets
+#' @description Remove o ponto da sigla das proposições citadas nos tweets
+#' @param tweets Dataframe de tweets com citacoes a proposições
+#' @return Dataframe identico porém com a sigla modificada
+.remove_ponto_sigla <- function(tweets) {
+  
+  tweets_sem_ponto <- tweets %>% 
+    mutate(sigla = str_remove(sigla, "\\."))
+
+  return(tweets_sem_ponto)
+}
+
 #' @title Processa os dados dos tweets no formato do banco.
 #' @description Retorna os dados dos tweets processados.
 #' @param tweets_datapath Caminho para o csv de tweets
@@ -42,10 +55,9 @@ process_tweets <-
     source(here::here("code/processor/parlamentares/processor_parlamentares.R"))
     
     tweets <-
-      read_csv(tweets_datapath, col_types = "cccccidddddddccc") %>%
+      read_csv(tweets_datapath, col_types = "ccccccccc") %>%
       .generate_id_parlamentar_parlametria() %>%
-      select(-c(id_parlamentar, casa, citadas)) %>%
-      distinct()
+      select(-c(id_parlamentar, casa))
     
     parlamentares <-
       read_csv(parlamentares_datapath, col_types = cols(.default = "c"))
@@ -59,15 +71,11 @@ process_tweets <-
         created_at,
         text,
         interactions,
-        url = status_url,
-        outrage,
-        vagueness,
-        argumentation,
-        modalization,
-        valuation,
-        sentiment,
-        presupposition
-      )
+        url = status_url
+      ) %>% 
+      group_by(id_tweet) %>% 
+      mutate(interactions = max(interactions), created_at = last(created_at)) %>% 
+      distinct(id_tweet, .keep_all = TRUE)
     
     return(tweets)
   }
@@ -86,25 +94,28 @@ process_tweets_proposicoes <-
            relatorias_datapath = here::here("data/relatorias/relatorias.csv")) {
     
     tweets_com_parlamentares_em_exercicio <-
-      read_csv(tweets_processados_datapath, col_types = "cccccicddddddd") %>%
+      read_csv(tweets_processados_datapath, col_types = "ccccccc") %>%
       select(id_tweet, id_parlamentar_parlametria) %>%
       distinct()
     
     tweets <-
-      read_csv(tweets_datapath, col_types = "cccccidddddddccc") %>%
+      read_csv(tweets_datapath, col_types = "ccccccccc") %>%
       select(id_tweet, sigla = citadas) %>%
       distinct() %>%
-      inner_join(tweets_com_parlamentares_em_exercicio, by = "id_tweet")
+      inner_join(tweets_com_parlamentares_em_exercicio, by = "id_tweet") %>%
+      filter(!is.na(sigla)) %>% 
+      .remove_ponto_sigla()
     
     proposicoes <-
       read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>%
       .remove_ambiguidade_siglas() %>% 
       mutate(sigla = str_replace(sigla, "MPV", "MP"))
     
-    relatorias <- read_csv(relatorias_datapath, col_types = cols(.default = "c"))
+    relatorias <- read_csv(relatorias_datapath, col_types = cols(.default = "c")) %>% 
+      distinct()
     
     tweets_proposicoes <- tweets %>%
-      left_join(proposicoes, by = c("sigla")) %>%
+      inner_join(proposicoes, by = c("sigla")) %>%
       filter(!is.na(id_tweet),!is.na(id_proposicao_leggo)) %>%
       distinct() %>% 
       left_join(relatorias, by = c("id_parlamentar_parlametria",

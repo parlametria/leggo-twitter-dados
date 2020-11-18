@@ -1,5 +1,5 @@
 #' @title Baixa as proposições por agenda
-#' @description Recebe uma agenda e retornas as proposições monitoradas pelo
+#' @description Recebe uma agenda e retorna as proposições monitoradas pelo
 #' Leggo com essa agenda.
 #' @param agenda Agenda de interesse (obs: sem acentos e espaços,
 #' ex: reforma-tributaria)
@@ -7,7 +7,7 @@
 fetch_proposicoes_by_agenda <-
   function(agenda = "congresso-remoto") {
     library(tidyverse)
-    
+
     print(paste0("Baixando proposições da agenda ", agenda, "..."))
     
     url <-
@@ -40,3 +40,18 @@ fetch_proposicoes_by_agenda <-
     
     return(proposicoes)
   }
+
+#' @title Baixa as proposições para todas as agendas do Leggo Proposições
+#' @description Retorna as proposições monitoradas pelas agendas do Leggo
+#' @return Dataframe com informações das proposições.
+fetch_proposicoes_todas_agendas <- function() {
+  library(tidyverse)
+  
+  agendas <- RCurl::getURL("https://api.leggo.org.br/interesses") %>% 
+    jsonlite::fromJSON() %>% 
+    select(interesse)
+  
+  proposicoes <- purrr::map_df(agendas$interesse, 
+                               ~ fetch_proposicoes_by_agenda(.x))
+  return(proposicoes)
+}
