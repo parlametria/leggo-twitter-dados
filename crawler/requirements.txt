@@ -1,0 +1,3 @@
+git+https://github.com/JustAnotherArchivist/snscrape.git
+pandas
+argparse
