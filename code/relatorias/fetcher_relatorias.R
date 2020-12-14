@@ -20,13 +20,19 @@ fetch_relatores_proposicoes_by_agenda <-
       RCurl::getURL(url, .encoding = "UTF-8") %>%
       jsonlite::fromJSON()
     
-    relatores <- df %>%
-      select(id_parlamentar_parlametria = relator_id_parlametria,
-             id_proposicao = id_leggo,
-             casa) %>% 
-      distinct()
-    
-    return(relatores)
+    if (!is.null(nrow(df))) {
+      relatores <- df %>%
+        select(id_parlamentar_parlametria = relator_id_parlametria,
+               id_proposicao = id_leggo,
+               casa) %>% 
+        distinct()
+      
+      return(relatores)
+      
+    } else {
+      
+      return(tibble())
+    }
   }
 
 #' @title Recupera as relatorias das proposições de todas as agendas
