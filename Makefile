@@ -41,7 +41,7 @@ r-shell:
 .PHONY: r-shell
 r-export-data:
 	if [ -z "$(url)" ]; then echo "Insira uma url válida para API do Parlametria"; \
-	else echo "\nUsando a API: "$(url); docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/export_data.R -u $(url) -p $(props_csv)"; fi
+	else echo "\nUsando a API: "$(url); docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/export_data.R -u $(url)"; fi
 .PHONY: r-export-data
 r-export-data-db-format:
 	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/processor/export_data_to_db_format.R"
