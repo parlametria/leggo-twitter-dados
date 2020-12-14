@@ -29,7 +29,7 @@ export_proposicoes <- function(api_url = "https://dev.api.leggo.org.br",
                                proposicoes_datapath = NULL,
                                saida = here::here("data/proposicoes/proposicoes.csv")) {
   message("Iniciando processamento de proposições...")
-  if (is.null(proposicoes_datapath)) {
+  if (is.null(proposicoes_datapath) || proposicoes_datapath == "") {
     message("Baixando dados...")
     source(here::here("code/proposicoes/fetcher_proposicoes.R"))
     proposicoes <- fetch_proposicoes_todas_agendas(api_url = api_url)
