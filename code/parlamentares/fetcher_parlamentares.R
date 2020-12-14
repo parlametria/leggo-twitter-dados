@@ -1,12 +1,14 @@
 #' @title Baixa os parlamentares em execício
 #' @description Retorna os parlamentares que estão em exercício
+#' @param api_url URL da api do Parlametria. (Não incluir a '/' ao final do domínio).
 #' @return Dataframe com informações dos parlamentares em exercício,
 #' como id, casa, nome, partido e uf.
-fetch_parlamentares_em_exercicio <- function() {
+fetch_parlamentares_em_exercicio <- function(api_url = "https://dev.api.leggo.org.br") {
   library(tidyverse)
   
   url <-
-    "https://dev.api.leggo.org.br/entidades/parlamentares/exercicio"
+    paste0(api_url, 
+           "/entidades/parlamentares/exercicio")
   
   parlamentares <- RCurl::getURL(url, .encoding = "UTF-8") %>%
     jsonlite::fromJSON()

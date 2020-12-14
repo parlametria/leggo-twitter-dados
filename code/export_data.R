@@ -1,5 +1,24 @@
 library(tidyverse)
 
+if(!require(optparse)){
+  install.packages("optparse")
+  suppressWarnings(suppressMessages(library(optparse)))
+}
+
+args = commandArgs(trailingOnly=TRUE)
+
+message("Use --help para mais informações\n")
+
+option_list = list(
+  make_option(c("-u", "--url"), type="character", default="https://api.leggo.org.br", 
+              help="url da api do parlametria [default= %default]", metavar="character")
+) 
+
+opt_parser = OptionParser(option_list=option_list)
+opt = parse_args(opt_parser)
+
+api_url <- opt$url
+
 message("Recupera, processa e exporta dados de parlamentares, proposições e tweets")
 
 source(here::here("code/parlamentares/export_parlamentares.R"))

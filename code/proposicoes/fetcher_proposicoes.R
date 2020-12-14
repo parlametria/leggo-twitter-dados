@@ -3,15 +3,18 @@
 #' Leggo com essa agenda.
 #' @param agenda Agenda de interesse (obs: sem acentos e espaços,
 #' ex: reforma-tributaria)
+#' @param api_url URL da api do Parlametria. (Não incluir a '/' ao final do domínio).
 #' @return Dataframe com informações das proposições de uma agenda.
 fetch_proposicoes_by_agenda <-
-  function(agenda = "congresso-remoto") {
+  function(agenda = "congresso-remoto",
+           api_url = "https://dev.api.leggo.org.br") {
     library(tidyverse)
 
     print(paste0("Baixando proposições da agenda ", agenda, "..."))
     
     url <-
-      paste0("https://api.leggo.org.br/proposicoes/?interesse=",
+      paste0(api_url, 
+             "/proposicoes/?interesse=",
              agenda)
     
     df <-
@@ -43,15 +46,16 @@ fetch_proposicoes_by_agenda <-
 
 #' @title Baixa as proposições para todas as agendas do Leggo Proposições
 #' @description Retorna as proposições monitoradas pelas agendas do Leggo
+#' @param api_url URL da api do Parlametria. (Não incluir a '/' ao final do domínio).
 #' @return Dataframe com informações das proposições.
-fetch_proposicoes_todas_agendas <- function() {
+fetch_proposicoes_todas_agendas <- function(api_url = "https://dev.api.leggo.org.br") {
   library(tidyverse)
   
-  agendas <- RCurl::getURL("https://api.leggo.org.br/interesses") %>% 
+  agendas <- RCurl::getURL(paste0(api_url, "/interesses")) %>% 
     jsonlite::fromJSON() %>% 
     select(interesse)
   
   proposicoes <- purrr::map_df(agendas$interesse, 
-                               ~ fetch_proposicoes_by_agenda(.x))
+                               ~ fetch_proposicoes_by_agenda(.x, api_url))
   return(proposicoes)
 }
