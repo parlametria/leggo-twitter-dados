@@ -9,9 +9,18 @@ process_proposicoes <-
     
     proposicoes <- read_csv(proposicoes_datapath, col_types = cols(.default = "c"))
     
+    col_names <- c("id_proposicao_leggo", "casa", "casa_origem", "sigla")
+    
+    if ("destaque" %in% names(proposicoes)) {
+      col_names <- c("id_proposicao_leggo", "casa", "casa_origem", "sigla", "destaque")
+    }
+    
     proposicoes <- proposicoes %>% 
-      select(id_proposicao_leggo = id_proposicao, casa, casa_origem, sigla) %>% 
-      mutate(casa_origem = if_else(casa_origem == 'nan', as.character(NA), casa_origem)) %>% 
+      rename(id_proposicao_leggo = id_proposicao) %>% 
+      select(all_of(col_names))
+    
+    proposicoes <- proposicoes %>%
+      mutate(casa_origem = if_else(casa_origem == 'nan', as.character(NA), casa_origem)) %>%
       distinct(id_proposicao_leggo, .keep_all = TRUE)
     
     return(proposicoes)
