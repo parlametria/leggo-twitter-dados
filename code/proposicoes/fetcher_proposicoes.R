@@ -29,14 +29,24 @@ fetch_proposicoes_by_agenda <-
       unnest(cols = c(interesse, etapas)) %>%
       unnest(cols = c(temas, slug_temas))
     
-    destaques <- df$destaques %>% 
-      bind_rows() %>% 
-      mutate(destaque = T) %>% 
-      select(id_leggo, destaque)
+    destaques <- df$destaques %>%
+      bind_rows()
     
-    proposicoes <- proposicoes %>%
-      left_join(destaques, by = c("id_proposicao" = "id_leggo")) %>% 
-      mutate(destaque = !is.na(destaque)) %>% 
+    if (nrow(destaques) > 0) {
+      destaques <- destaques %>%
+        mutate(destaque = T) %>%
+        select(id_leggo, destaque)
+      
+      proposicoes <- proposicoes %>%
+        left_join(destaques, by = c("id_proposicao" = "id_leggo")) %>%
+        mutate(destaque = !is.na(destaque))
+      
+    } else {
+      proposicoes <- proposicoes %>%
+        mutate(destaque = FALSE)
+    }
+    
+    proposicoes <- proposicoes %>% 
       select(
         id_proposicao,
         interesse_slug = interesse,
