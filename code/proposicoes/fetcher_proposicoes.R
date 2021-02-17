@@ -26,7 +26,10 @@ fetch_proposicoes_by_agenda <-
       interesse = df$interesse,
       etapas = df$etapas
     ) %>%
-      unnest(cols = c(interesse, etapas)) %>%
+      unnest(cols = c(interesse, etapas)) %>% 
+      mutate(temas = purrr::map(temas, ~ as.list(.))) %>%
+      mutate(slug_temas = purrr::map(slug_temas, ~ as.list(.))) %>%
+      unnest(cols = c(temas, slug_temas)) %>% 
       unnest(cols = c(temas, slug_temas))
     
     destaques <- df$destaques %>%
