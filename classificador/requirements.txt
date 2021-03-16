@@ -1,0 +1,8 @@
+pandas
+numpy
+argparse
+nltk
+tqdm
+gensim
+sklearn
+pyemd

@@ -1,5 +1,4 @@
-from os import system
-from os import listdir
+from os import system, listdir, makedirs, write
 from os.path import isfile, exists
 import numpy as np
 import pandas as pd
@@ -23,7 +22,9 @@ def calculate_distances(path, file_list):
 
 
 def create_distances_dict(path):
-    distances_path = path + '/distancias'
+    distances_path = path + '/distancias/'
+    if not exists(distances_path):
+        makedirs(distances_path)
     files = [e for e in listdir(distances_path)
              if e.split('_')[0] == 'distancias']
     distances_dict = {}
@@ -123,14 +124,28 @@ def classify_with_knn(path_csvs, distances_dict):
         final[pl] = resultados_teste
         print(resultados_teste)
 
-        return (resultado, best_results, dfs, final)
+    return (resultado, best_results, dfs, final)
+
+
+def write_dict_to_csv(data, outdir, filename):
+    df = pd.DataFrame(data)
+    df.to_csv(outdir + filename)
 
 
 if __name__ == "__main__":
-    path_csvs = './src/data/experimento_classificador/muitas_proposicoes' + \
-       '/novos_dados/bases/'
-    file_list = listdir(path_csvs)
-    calculate_distances(path_csvs, file_list)
-    distances_dict = create_distances_dict(path_csvs)
-    resultado, best_results, dfs, final = classify_with_knn(path_csvs,
+    path_csv_bases = './data/bases/'
+    path_out_distances = './data/distances/'
+    if not exists(path_out_distances):
+        makedirs(path_out_distances)  
+    file_list = listdir(path_csv_bases)
+    calculate_distances(path_csv_bases, file_list)
+    distances_dict = create_distances_dict(path_out_distances)
+    resultado, best_results, dfs, final = classify_with_knn(path_csv_bases,
                                                             distances_dict)
+    results_dir = './data/resultados/'
+    if not exists(results_dir):
+        makedirs(results_dir)                                                     
+    write_dict_to_csv(resultado, results_dir, 'resultado.csv')
+    write_dict_to_csv(best_results, results_dir, 'best_results.csv')
+    write_dict_to_csv(dfs, results_dir, 'previsoes.csv')
+    write_dict_to_csv(final, results_dir, 'final.csv')

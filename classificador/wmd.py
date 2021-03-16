@@ -169,7 +169,7 @@ def main(args):
                 distancias['rotulo_2'].append(other_row['rotulo'])
                 distancias['wmd'].append(distancia)
     fim = time.time() - inicio
-    print(f'distancia entre pares calculadas em {fim}s')
+    print(f'Distancia entre pares calculadas em {fim}s')
     print('Criando e salvando csv')
     print(len(distancias['id_tweet_1']))
     print(len(distancias['id_tweet_2']))
@@ -187,8 +187,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--dataset",
-        default='./src/data/experimento_classificador/muitas_proposicoes/' +
-                'teste_PEC 6_2.csv',
         type=str, help='csv dataset'
     )
     parser.add_argument(
@@ -196,7 +194,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--emb",
-        default='./src/data/glove_w2v.txt',
+        default='./data/glove_w2v.txt',
         type=str,
         help='embedding file which can be loaded via gensim\'s KeyedVectors'
     )
@@ -207,7 +205,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--out",
-        default='./src/data/experimento_classificador/muitas_proposicoes/' +
+        default='./data/experimento_classificador/muitas_proposicoes/' +
                 'distancias_teste_pec_6_2.csv',
         type=str, help='name of generated output'
     )
