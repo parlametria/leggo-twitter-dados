@@ -49,11 +49,19 @@ fetch_proposicoes_by_agenda <-
         mutate(destaque = FALSE)
     }
     
+    proposicoes_casa_origem <- proposicoes %>% 
+      group_by(id_proposicao) %>% 
+      mutate(last_apresentacao = min(data_apresentacao)) %>% 
+      ungroup() %>% 
+      filter(last_apresentacao == data_apresentacao) %>% 
+      select(id_proposicao, casa_origem = casa)
+    
     proposicoes <- proposicoes %>% 
+      left_join(proposicoes_casa_origem, by = c("id_proposicao")) %>% 
       select(
         id_proposicao,
         interesse_slug = interesse,
-        interesse_nome = nome_interesse,
+        interesse_nome = interesse,
         temas_nome = temas,
         temas_slug = slug_temas,
         sigla,
