@@ -37,7 +37,7 @@ b) Preencha as variáveis contidas no .env.sample também para o .env. Altere os
 
 Alguns arquivos grandes são necessários e estão fora desse repositório. É necessário baixá-los antes da dos passos seguinte. São eles:
 
-* [Tweets dos parlamentares](https://drive.google.com/file/d/1q0lW1vFrfEppgMG-wGmaxRhnB1JRLyVR/view?usp=sharing): salvar em `data/tweets`
+* [Tweets dos parlamentares](https://drive.google.com/file/d/1ahsbsFBwBED7ez9NViC5De4pbmbusbIP/view?usp=sharing): salvar em `data/tweets`
 
 Se ainda não criou as tabelas do BD:
 

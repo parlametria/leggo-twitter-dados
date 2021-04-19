@@ -6,7 +6,7 @@
 #' @param api_url URL da api do Parlametria. (Não incluir a '/' ao final do domínio).
 #' @return Dataframe com informações das proposições de uma agenda.
 fetch_proposicoes_by_agenda <-
-  function(agenda = "congresso-remoto",
+  function(agenda = "transparencia-e-integridade",
            api_url = "https://dev.api.leggo.org.br") {
     library(tidyverse)
 
@@ -37,12 +37,18 @@ fetch_proposicoes_by_agenda <-
     
     if (nrow(destaques) > 0) {
       destaques <- destaques %>%
-        mutate(destaque = T) %>%
+        mutate(
+          destaque = (
+            criterio_req_urgencia_apresentado ||
+              criterio_req_urgencia_aprovado ||
+              criterio_aprovada_em_uma_casa
+          )
+        ) %>%
         select(id_leggo, destaque)
       
       proposicoes <- proposicoes %>%
         left_join(destaques, by = c("id_proposicao" = "id_leggo")) %>%
-        mutate(destaque = !is.na(destaque))
+        mutate(destaque = if_else(is.na(destaque), F, destaque))
       
     } else {
       proposicoes <- proposicoes %>%
