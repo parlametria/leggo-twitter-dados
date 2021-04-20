@@ -69,7 +69,7 @@ Twitter json Object structure example:
 }
 """
 
-df = pd.read_csv('../data/parlamentares/perfil_parlamentar.csv')
+df = pd.read_csv('../data/perfil_parlamentar.csv')
 df = df[df['tem twitter?']=='sim'].reset_index()
 df = df.drop(columns=['index','tem twitter?','facebook (não conferido)','nome_civil','fazendo'])
 df = df[pd.notna(df['twitter'])].reset_index()
@@ -82,8 +82,12 @@ args = parser.parse_args()
 since = args.since
 until = args.until
 
+def get_usernames(mentions):
+    usernames = [mention['username'] for mention in mentions]
+    return ",".join(usernames)
+
 with open("tweets_parlamentares_"+since+"_to_"+until+".csv","w") as f:
-    f.write("id,id_parlamentar,casa,nome_eleitoral,partido,uf,username,created_at,text,favorite_count,reply_count,retweet_count,interactions,status_url\n")
+    f.write("id,id_parlamentar,casa,nome_eleitoral,partido,uf,username,created_at,text,like_count,reply_count,retweet_count,interactions,status_url,mentions\n")
     for id,row in df.iterrows():
         user = row.twitter
         id_parlamentar = row.id_parlamentar
@@ -96,7 +100,7 @@ with open("tweets_parlamentares_"+since+"_to_"+until+".csv","w") as f:
             print(query)
             cp = subprocess.run(["snscrape", "--jsonl", "twitter-search", query], universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except:
-            print("crawler error")
+            print("crawler error, stalling for 5 mins")
             time.sleep(300)
             cp = subprocess.run(["snscrape", "--jsonl", "twitter-search", query], universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         for r in cp.stdout.split('\n'):
@@ -104,11 +108,16 @@ with open("tweets_parlamentares_"+since+"_to_"+until+".csv","w") as f:
             try:
                 res = json.loads(r)
                 text = re.sub('\n', ' ', res['content'])
-                interactions = int(res['replyCount'])+int(res["retweetCount"])
+                text = text.replace('\"','“')
+                interactions = int(res['replyCount'])+int(res["retweetCount"])+int(res['likeCount'])
                 #print(type(res["replyCount"]))
-                f.write(str(res['id'])+','+str(id_parlamentar)+","+casa+","+nome_eleitoral+","+partido+","+UF+","+user+","+res['date'][0:10]+",\""+text+"\","+str(res["replyCount"])+","+str(res["retweetCount"])+","+str(interactions)+","+res["url"]+"\n")
-            except:
+                mentions = res["mentionedUsers"]
+                if mentions is None:
+                    mentions = ""
+                else:
+                    mentions = get_usernames(mentions)
+                f.write(str(res['id'])+','+str(id_parlamentar)+","+casa+","+nome_eleitoral+","+partido+","+UF+","+user+","+res['date'][0:10]+",\""+text+"\","+str(res["likeCount"])+","+str(res["replyCount"])+","+str(res["retweetCount"])+","+str(interactions)+","+res["url"]+",\""+mentions+"\"\n")
+            except Exception as e:
+                #print("error:",e)
                 pass
 
-
-    
