@@ -14,7 +14,8 @@ DO
   SET 
     casa = EXCLUDED.casa,
     casa_origem = EXCLUDED.casa_origem,
-    sigla = EXCLUDED.sigla;
+    sigla = EXCLUDED.sigla,
+    destaque = EXCLUDED.destaque;
 
 DROP TABLE temp_proposicao;
 

@@ -14,7 +14,7 @@ help:
 	@echo "\t$(b)feed-update-data$(s)\tAtualiza dados para as tabelas para o Banco de dados"
 	@echo "\t$(b)feed-drop-tables$(s)\tAtenção: Dropa as Tabelas para o Banco de dados"
 	@echo "\t$(b)r-shell$(s)\t\t\tAbre uma instância bash dentro do container do r-leggo-twitter"
-	@echo "\t$(b)r-export-data$(s)\t\tExecuta o processamento de dados (fetchers) para Proposições, parlamentares e tweets"
+	@echo "\t$(b)r-export-data url="https://api.leggo.org.br"$(s)\t\tExecuta o processamento de dados (fetchers) para Proposições, parlamentares e tweets"
 	@echo "\t$(b)r-export-data-db-format$(s)\tExecuta o processamentos dos dados para o formato do BD"
 	@echo "\t$(b)feed-do-migrations$(s)\tAtualiza as tabelas para o Banco de dados"
 .PHONY: help
@@ -40,7 +40,8 @@ r-shell:
 	docker exec -it r-leggo-twitter bash
 .PHONY: r-shell
 r-export-data:
-	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/export_data.R"
+	if [ -z "$(url)" ]; then echo "Insira uma url válida para API do Parlametria"; \
+	else echo "\nUsando a API: "$(url); docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/export_data.R -u $(url)"; fi
 .PHONY: r-export-data
 r-export-data-db-format:
 	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/processor/export_data_to_db_format.R"

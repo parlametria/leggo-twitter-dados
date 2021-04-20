@@ -31,15 +31,21 @@ fetch_tweets <- function() {
   library(tidyverse)
   source(here::here("code/tweets/constants_tweets.R"))
   
-  tweets_todos <- read_csv(here::here("data/tweets/tweets_parlamentares_todos.zip"), col_types = cols(.default = "c")) %>% 
+  tweets_todos <- read_csv(here::here("data/tweets/tweets_todos.zip"), col_types = cols(.default = "c")) %>% 
     .preprocess_tweets(c("id_parlamentar", "casa", "username", "created_at", "text", "interactions", "status_url")) %>% 
     .get_id_tweet() %>% 
     distinct(id_tweet, .keep_all = TRUE)
+  
   tweets_com_mencoes <- read_csv(.URL_MENCOES_CR, col_types = cols(.default = "c")) %>% 
     .preprocess_tweets(c("id_parlamentar", "casa", "username", "created_at", "text", "interactions", "status_url", "id_tweet", "citadas"))
   
   tweets <- bind_rows(tweets_todos, tweets_com_mencoes) %>% 
     distinct(id_tweet, citadas, .keep_all = TRUE)
   
-  return(tweets)
+  tweets_filtrados <- tweets %>% 
+    filter(!is.na(id_tweet))
+  
+  message(str_glue("Tweets sem id ignorados: {tweets %>% filter(is.na(id_tweet)) %>% nrow()}"))
+
+  return(tweets_filtrados)
 }

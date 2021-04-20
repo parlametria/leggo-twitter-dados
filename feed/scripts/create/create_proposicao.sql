@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS "proposicao" (
     "casa" VARCHAR(20),
     "casa_origem" VARCHAR(20),
     "sigla" VARCHAR(40),
+    "destaque" BOOLEAN,
     PRIMARY KEY("id_proposicao_leggo")
 );

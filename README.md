@@ -37,7 +37,7 @@ b) Preencha as variáveis contidas no .env.sample também para o .env. Altere os
 
 Alguns arquivos grandes são necessários e estão fora desse repositório. É necessário baixá-los antes da dos passos seguinte. São eles:
 
-* [Tweets dos parlamentares](https://drive.google.com/file/d/1q0lW1vFrfEppgMG-wGmaxRhnB1JRLyVR/view?usp=sharing): salvar em `data/tweets`
+* [Tweets dos parlamentares](https://drive.google.com/file/d/1ahsbsFBwBED7ez9NViC5De4pbmbusbIP/view?usp=sharing): salvar em `data/tweets`
 
 Se ainda não criou as tabelas do BD:
 
@@ -58,7 +58,7 @@ Nesta seção apresentaremos dois comandos úteis para o processamento dos dados
 1. A primeira etapa do processamento envolve capturar, processar e salvar os dados de proposições, parlamentares e tweets. Para isto é possível executar o comando:
 
 ```
-make r-export-data
+make r-export-data url=https://api.leggo.org.br
 ```
 
 Todos os dados serão salvos na pasta `data/` conforme o módulo ao qual pertence.
