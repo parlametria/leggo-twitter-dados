@@ -11,8 +11,10 @@ pip3 install -r requirements.txt
 Para realizar uma coleta, basta rodar o script abaixo:
 
 ```
-  python3 crawler_snscrape.py --since YYYY-MM-DD --until YYYY-MM-DD
+  python3 crawler_snscrape.py --input_inf INFLUENCERS.csv --since YYYY-MM-DD --until YYYY-MM-DD
 ```
+- `--input_inf` : csv de entrada com os usuários dos Influencers/veículos de mídia. O csv deve, obrigatóriamente, ter as colunas nome, twitter e grupo.
+    - Default : `influencers.csv`
 
 - `--since` : data de início da coleta, no formato Ano-Mês-Dia (YYYY-MM-DD).
     - Default : `2019-01-01`

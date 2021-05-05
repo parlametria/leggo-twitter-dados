@@ -74,26 +74,40 @@ df = df[df['tem twitter?']=='sim'].reset_index()
 df = df.drop(columns=['index','tem twitter?','facebook (não conferido)','nome_civil','fazendo'])
 df = df[pd.notna(df['twitter'])].reset_index()
 df['twitter'] = df['twitter'].apply(unicode_filter)
+df['grupo'] = 'parlamentares'
+df = df.rename(columns={"nome_eleitoral": "nome"}, errors="raise").drop(['index'],axis=1)
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--input_inf",default='influencers.csv', type=str, help = 'columns = [nome, twitter, grupo]')
 parser.add_argument("--since", default='2019-01-01', type=str, help='starting date for the collection')
 parser.add_argument("--until", default='2020-07-01', type=str, help='limit date for the collection')
 args = parser.parse_args()
+inf = args.input_inf
 since = args.since
 until = args.until
+
+df_inf = pd.read_csv(inf)
+df_inf['id_parlamentar'] = None
+df_inf['casa'] = None
+df_inf['partido'] = None
+df_inf['UF'] = None
+df_inf['twitter2 (se houver)'] = None
+
+df = df.append(df_inf,ignore_index=True)
 
 def get_usernames(mentions):
     usernames = [mention['username'] for mention in mentions]
     return ",".join(usernames)
 
-with open("tweets_parlamentares_"+since+"_to_"+until+".csv","w") as f:
-    f.write("id,id_parlamentar,casa,nome_eleitoral,partido,uf,username,created_at,text,like_count,reply_count,retweet_count,interactions,status_url,mentions\n")
+with open("tweets_parl_inf_"+since+"_to_"+until+".csv","w") as f:
+    f.write("id,id_parlamentar,casa,nome,partido,grupo,uf,username,created_at,text,like_count,reply_count,retweet_count,interactions,status_url,mentions\n")
     for id,row in df.iterrows():
         user = row.twitter
         id_parlamentar = row.id_parlamentar
         casa = row.casa
-        nome_eleitoral = row.nome_eleitoral
+        nome_eleitoral = row.nome
         partido = row.partido
+        grupo = row.grupo
         UF = row.UF
         query = "from:"+user+" since:"+since+" until:"+until
         try:
@@ -104,7 +118,6 @@ with open("tweets_parlamentares_"+since+"_to_"+until+".csv","w") as f:
             time.sleep(300)
             cp = subprocess.run(["snscrape", "--jsonl", "twitter-search", query], universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         for r in cp.stdout.split('\n'):
-            #print(r)
             try:
                 res = json.loads(r)
                 text = re.sub('\n', ' ', res['content'])
@@ -112,11 +125,22 @@ with open("tweets_parlamentares_"+since+"_to_"+until+".csv","w") as f:
                 interactions = int(res['replyCount'])+int(res["retweetCount"])+int(res['likeCount'])
                 #print(type(res["replyCount"]))
                 mentions = res["mentionedUsers"]
+                #print(str(id_parlamentar))
                 if mentions is None:
                     mentions = ""
                 else:
                     mentions = get_usernames(mentions)
-                f.write(str(res['id'])+','+str(id_parlamentar)+","+casa+","+nome_eleitoral+","+partido+","+UF+","+user+","+res['date'][0:10]+",\""+text+"\","+str(res["likeCount"])+","+str(res["replyCount"])+","+str(res["retweetCount"])+","+str(interactions)+","+res["url"]+",\""+mentions+"\"\n")
+                if res['id'] == None:
+                    res['id'] = ""
+                if id_parlamentar == None:
+                    id_parlamentar = ""
+                if casa == None:
+                    casa = ""
+                if partido == None:
+                    partido = ""
+                if UF == None:
+                    UF = ""
+                f.write(str(res['id'])+','+str(id_parlamentar)+","+casa+","+nome_eleitoral+","+partido+","+grupo+","+UF+","+user+","+res['date'][0:10]+",\""+text+"\","+str(res["likeCount"])+","+str(res["replyCount"])+","+str(res["retweetCount"])+","+str(interactions)+","+res["url"]+",\""+mentions+"\"\n")
             except Exception as e:
                 #print("error:",e)
                 pass
