@@ -1,3 +1,5 @@
 git+https://github.com/JustAnotherArchivist/snscrape.git
 pandas
 argparse
+SQLAlchemy==1.4.15
+click==7.0
