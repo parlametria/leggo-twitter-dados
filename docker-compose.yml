@@ -36,6 +36,8 @@ services:
       context: ${TWITTER_API_DADOS_PATH:-.}/crawler
     container_name: crawler-leggo-twitter
     image: crawler-leggo-twitter-image
+    networks:
+      - twitternet
 
 networks:
   twitternet:

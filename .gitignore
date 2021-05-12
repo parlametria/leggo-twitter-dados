@@ -4,6 +4,8 @@
 .env.staging
 .env.local
 
+**/__pycache__/
+
 # Arquivos grandes demais para manter no repo
 data/tweets/tweets_parlamentares_todos.zip
 data/tweets/tweets_todos.zip
