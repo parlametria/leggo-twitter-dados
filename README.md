@@ -132,6 +132,10 @@ Se você quiser também é possível resetar e popular novamente o banco de dado
 ./update_leggo_data.sh -reset-db-twitter <env>
 ```
 
+```
+./update_leggo_data.sh -update-db-twitter <env>
+```
+
 <env> pode ser `development`, `staging`, `production`.
 
-Neste comando as tabelas são dropadas, são criadas novamente e os dados são inseridos também.
+Nestes comandos as tabelas são dropadas, são criadas novamente e os dados são inseridos também.
