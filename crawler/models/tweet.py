@@ -14,10 +14,10 @@ class Tweet(Base):
     text = Column(Text())
     date = Column(DateTime())
     url = Column(String())
-    replyCount = Column(Integer())
-    retweetCount = Column(Integer())
-    likeCount = Column(Integer())
-    quoteCount = Column(Integer())
+    reply_count = Column(Integer())
+    retweet_count = Column(Integer())
+    like_count = Column(Integer())
+    quote_count = Column(Integer())
 
     log_update_tweets = relationship(
         "Log_update_tweets", back_populates="tweets")

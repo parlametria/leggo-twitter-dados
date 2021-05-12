@@ -5,8 +5,8 @@ from models.tweet import Tweet
 
 
 def insert_tweet(id_tweet, username, text=None, date=None,
-                 url=None, replyCount=None, retweetCount=None,
-                 likeCount=None, quoteCount=None):
+                 url=None, reply_count=None, retweet_count=None,
+                 like_count=None, quote_count=None):
     """
     Insere um novo tweet no banco de dados
     Caso já exista então atualiza
@@ -24,20 +24,20 @@ def insert_tweet(id_tweet, username, text=None, date=None,
         Data do tweet
     url : str
         URL para o tweet
-    replyCount : int
+    reply_count : int
         Contagem de replies
-    retweetCount : int
+    retweet_count : int
         Contagem de retweets
-    likeCount : int
+    like_count : int
         Contagem de likes
-    quoteCount : int
+    quote_count : int
         Contagem de citações
     """
     session = Session()
 
     new_tweet = Tweet(id_tweet=id_tweet, username=username, text=text, date=date,
-                      url=url, replyCount=replyCount, retweetCount=retweetCount,
-                      likeCount=likeCount, quoteCount=quoteCount)
+                      url=url, reply_count=reply_count, retweet_count=retweet_count,
+                      like_count=like_count, quote_count=quote_count)
 
     session.merge(new_tweet)
 

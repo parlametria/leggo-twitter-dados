@@ -1,4 +1,5 @@
 import click
+
 from services.ddl import create_tables, drop_tables
 from services.tweet import insert_tweet, delete_tweet
 from services.log_update_tweets import insert_log_update_tweets, delete_log_update_tweets
