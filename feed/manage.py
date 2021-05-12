@@ -45,11 +45,16 @@ def update_data():
     execute_migration('/code/scripts/update/update_agenda_proposicao.sql')
 
 @click.command()
-def drop_tables():
+@click.option('-d', '--drop')
+def drop_tables(drop):
     """Atenção: Dropa as tabelas no banco de dados"""
 
-    print("Tem certeza?")
-    entrada = input("Y/n ")
+    print(drop)
+    if (drop == 'true'):
+        entrada = "Y"
+    else:
+        print("Tem certeza?")
+        entrada = input("Y/n ")
 
     if (entrada == "Y"):
         execute_migration('/code/scripts/drop/drop_tabelas.sql')

@@ -45,6 +45,18 @@ Se ainda não criou as tabelas do BD:
 make feed-create-tables
 ```
 
+Se você nunca criou as tabelas do banco de dados:
+
+```
+make feed-create-tables
+```
+
+E se também nunca aplicou as migrations:
+
+```
+make feed-do-migrations
+```
+
 Para atualizar e importar os dados execute:
 
 ```
@@ -78,3 +90,52 @@ Acesse o Makefile para obter ajuda sobre os comandos que podem ser executados no
 ```
 make help
 ```
+
+## Configuração dos ambientes de desenvolvimento, validação e produção
+
+Com o objetivo de automatizar os comandos de processar, atualizar e resetar os dados e o banco de dados do Twitter em diferentes ambientes, foram criados comandos específicos para orquestrar o serviço do twitter-dados.
+
+Esses comandos fazem uso da arquitetura docker deste repositório que considera no ambiente de desenvolvimento os arquivos docker-compose.yml e docker-compose.override.yml. No ambiente de validação os arquivos docker-compose.yml e staging.yml e no de produção docker-compose.yml e prod.yml.
+
+### Passo 1
+Para usar os comando orquestrados em vários ambientes é necessário que sejam criados arquivos de environment: `.env`, `.env.staging` e `.env.prod`. Esses arquivos devem estar baseados no `.env.sample` com seus respectivos valores.
+
+### Passo 2
+
+Clonar o [leggo-geral](https://github.com/parlametria/leggo-geral) e configurar as variáveis de ambiente com base no README do leggo-geral.
+
+### Passo 3
+Usar os comandos do leggo-geral para processar os dados do leggo-twitter:
+```
+./update_leggo_data.sh -process-leggo-twitter <env>
+```
+
+<env> pode ser `development` que usará o código mais atual com base no volume montado entre o diretório code e o container do r-twitter-service.
+
+<env> pode ser `production` que fará o build da imagem do r-twitter-service com base na versão atual do código.
+
+### Passo 4
+Se você quiser também é possível atualizar os bancos de dados de diferentes ambientes:
+
+```
+./update_leggo_data.sh -update-db-twitter <env>
+```
+
+<env> pode ser `development`, `staging`, `production`.
+
+Neste comando as migrations são aplicadas e o módulo de upsert é usado para atualizar os dados nas tabelas do bd.
+
+### Passo 4
+Se você quiser também é possível resetar e popular novamente o banco de dados do zero:
+
+```
+./update_leggo_data.sh -reset-db-twitter <env>
+```
+
+```
+./update_leggo_data.sh -update-db-twitter <env>
+```
+
+<env> pode ser `development`, `staging`, `production`.
+
+Nestes comandos as tabelas são dropadas, são criadas novamente e os dados são inseridos também.
