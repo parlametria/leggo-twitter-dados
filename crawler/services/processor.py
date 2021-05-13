@@ -7,6 +7,7 @@ import re
 import pandas as pd
 from sqlalchemy.orm.exc import NoResultFound
 
+from config.log import logger
 from services.database.log_update_tweets import select_log_update_tweets
 from services.database.upsert_tweets import upsert_tweets_username
 from models.log_update_tweets import Log_update_tweets
@@ -51,7 +52,7 @@ def process_tweets_by_username(username, until_date=None):
         since_date = datetime.strptime(SINCE_DEFAULT, '%Y-%m-%d %H:%M:%S')
     else:
         since_date = log_user.updated
-    
+
     since_date = pytz.timezone('America/Recife').localize(since_date)
 
     if until_date is None:
@@ -63,7 +64,7 @@ def process_tweets_by_username(username, until_date=None):
             tweets = get_tweets_by_username(username, since_date, until_date)
             upsert_tweets_username(log_user, tweets)
         except Exception as e:
-            print(e)
+            logger.error(e)
             return(False)
     return(True)
 
@@ -84,7 +85,7 @@ def get_tweets_by_username(username, since_date, until_date):
         since_date.strftime('%Y-%m-%d')+" until:" + \
         until_date.strftime('%Y-%m-%d')
     try:
-        print(query)
+        logger.info(query)
         result = subprocess.run(["snscrape", "--jsonl", "twitter-search", query],
                                 universal_newlines=True, stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE)
@@ -104,13 +105,11 @@ def get_tweets_by_username(username, since_date, until_date):
                              date=date, url=url,
                              reply_count=reply_count, retweet_count=retweet_count,
                              like_count=like_count, quote_count=quote_count)
-                # print(tweet)
                 tweets.append(tweet)
             except Exception as e:
                 # print(e)
                 pass
     except Exception as e:
-        # print(e)
         raise Exception("Não foi possível baixar os dados dos tweets")
 
     return tweets

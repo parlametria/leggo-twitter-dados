@@ -1,5 +1,6 @@
 from sqlalchemy.dialects.postgresql import insert
 
+from config.log import logger
 from config.base import Session
 from models.tweet import Tweet
 from models.log_update_tweets import Log_update_tweets
@@ -44,7 +45,8 @@ def upsert_tweets_username(log_user, tweets):
 
         session.execute(do_update_stmt)
     else:
-        print("Nenhum novo tweet foi capturado para " + log_user['username'])
+        logger.info("Nenhum novo tweet foi capturado para " +
+                    log_user['username'])
 
     # Realiza commit e encerra sessão
     session.commit()
