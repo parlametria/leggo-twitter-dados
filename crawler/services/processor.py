@@ -12,20 +12,22 @@ from services.database.upsert_tweets import upsert_tweets_username
 from models.log_update_tweets import Log_update_tweets
 
 TZ = pytz.timezone('America/Recife')
-SINCE_DEFAULT = '2019-02-01 00:00:00'
+SINCE_DEFAULT = '2021-05-10 00:00:00'
 
 
-def process_by_username(datapath):
+def process_tweets_list(datapath, until_date=None):
     """
-    Faz processamento para cada linha do df gerado
+    Processa tweets dado um conjunto de usuários
     ----------
     datapath : str
-        Caminho para o csv
+        Caminho para o csv.
+    until_date : datetime
+        Data final do intervalo de captura
     """
 
     df = pd.read_csv(datapath)
-    for row in df.iterrows():        
-        print(row['username'])
+    for index, row in df.iterrows():
+        process_tweets_by_username(row['username'], until_date)
 
 
 def process_tweets_by_username(username, until_date=None):
@@ -43,13 +45,14 @@ def process_tweets_by_username(username, until_date=None):
     try:
         log_user = select_log_update_tweets(user=username)
     except NoResultFound as e:
-        print(e)
         log_user = Log_update_tweets(username=username, updated=None)
 
     if log_user.updated is None:
         since_date = datetime.strptime(SINCE_DEFAULT, '%Y-%m-%d %H:%M:%S')
     else:
         since_date = log_user.updated
+    
+    since_date = pytz.timezone('America/Recife').localize(since_date)
 
     if until_date is None:
         until_date = datetime.now(tz=TZ)
@@ -66,6 +69,16 @@ def process_tweets_by_username(username, until_date=None):
 
 
 def get_tweets_by_username(username, since_date, until_date):
+    """
+    Recupera tweets de um usuário para um intervalo de datas
+    ----------
+    username : str
+        username do perfil no Twitter
+    since_date : datetime
+        Data inicial do intervalo de captura
+    until_date : datetime
+        Data final do intervalo de captura
+    """
     tweets = []
     query = "from:"+username+" since:" + \
         since_date.strftime('%Y-%m-%d')+" until:" + \
