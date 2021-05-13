@@ -41,3 +41,14 @@ def delete_log_update_tweets(user):
     # Realiza commit e encerra sessão
     session.commit()
     session.close()
+
+
+def select_log_update_tweets(user):
+    session = Session()
+
+    username = session.query(Log_update_tweets).filter(
+        Log_update_tweets.username == user).one()
+
+    session.close()
+
+    return username
