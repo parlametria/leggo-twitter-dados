@@ -1,7 +1,8 @@
 import click
 
 from services.ddl import create_tables, drop_tables
-from services.tweet import insert_tweet, delete_tweet, process_by_username
+from services.tweet import insert_tweet, delete_tweet
+from services.process import process_by_username
 from services.log_update_tweets import insert_log_update_tweets, delete_log_update_tweets
 
 
@@ -37,7 +38,7 @@ def teste():
 def testa_process_by_username():
     # TODO: remover este comando após a fase de desenvolvimento
 
-    csv_testa = '../../data/parlamentares/perfil_parlamentar.csv'
+    csv_testa = '../../data/tweets/tweets.csv'
     process_by_username(csv_testa)
 
 cli.add_command(create_schema)
