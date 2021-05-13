@@ -1,10 +1,10 @@
 from datetime import datetime
-from models.tweet import Tweet
 import pytz
 import subprocess
 import json
 import re
 
+import pandas as pd
 from sqlalchemy.orm.exc import NoResultFound
 
 from services.database.log_update_tweets import select_log_update_tweets
@@ -13,6 +13,19 @@ from models.log_update_tweets import Log_update_tweets
 
 TZ = pytz.timezone('America/Recife')
 SINCE_DEFAULT = '2019-02-01 00:00:00'
+
+
+def process_by_username(datapath):
+    """
+    Faz processamento para cada linha do df gerado
+    ----------
+    datapath : str
+        Caminho para o csv
+    """
+
+    df = pd.read_csv(datapath)
+    for row in df.iterrows():        
+        print(row['username'])
 
 
 def process_tweets_by_username(username, until_date=None):

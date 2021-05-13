@@ -3,7 +3,6 @@ from sqlalchemy import delete
 from config.base import Session
 from models.tweet import Tweet
 
-
 def insert_tweet(id_tweet, username, text=None, date=None,
                  url=None, reply_count=None, retweet_count=None,
                  like_count=None, quote_count=None):

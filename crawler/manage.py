@@ -2,14 +2,7 @@ from datetime import datetime
 import click
 
 from services.database.ddl import create_tables, drop_tables
-from services.database.tweet import insert_tweet, delete_tweet
-from services.database.log_update_tweets import (insert_log_update_tweets,
-                                                 delete_log_update_tweets,
-                                                 select_log_update_tweets)
-from services.database.upsert_tweets import upsert_tweets_username
 from services.processor import process_tweets_by_username
-from models.tweet import Tweet
-from models.log_update_tweets import Log_update_tweets
 
 
 @click.group()
