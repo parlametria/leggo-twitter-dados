@@ -15,4 +15,4 @@ class Log_update_tweets(Base):
                           passive_deletes=True)
 
     def __repr__(self):
-        return f"log(username={self.username!r}, updated={self.data_ultima_atualizacao!r}"
+        return f"log(username={self.username!r}, updated={self.updated!r}"
