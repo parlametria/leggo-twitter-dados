@@ -3,6 +3,7 @@ from sqlalchemy import delete
 from config.base import Session
 from models.tweet import Tweet
 
+import pandas as pd
 
 def insert_tweet(id_tweet, username, text=None, date=None,
                  url=None, reply_count=None, retweet_count=None,
@@ -60,3 +61,15 @@ def delete_tweet(id):
     # Realiza commit e encerra sessão
     session.commit()
     session.close()
+
+def process_by_username(datapath):
+    """
+    Faz processamento para cada linha do df gerado
+    ----------
+    datapath : str
+        Caminho para o csv
+    """
+
+    df = pd.read_csv(datapath).head(10)     # Remover o .HEAD(10)
+    for index, row in df.iterrows():
+        print(row['twitter'])               # Substituir por chamada de função
