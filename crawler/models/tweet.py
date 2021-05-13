@@ -23,4 +23,4 @@ class Tweet(Base):
         "Log_update_tweets", back_populates="tweets")
 
     def __repr__(self):
-        return f"Tweet(id={self.id_tweet!r}, username={self.username!r}"
+        return f"Tweet(id={self.id_tweet!r}, username={self.username!r})"

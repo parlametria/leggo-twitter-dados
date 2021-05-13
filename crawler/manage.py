@@ -1,3 +1,4 @@
+from datetime import datetime
 import click
 
 from services.database.ddl import create_tables, drop_tables
@@ -32,22 +33,22 @@ def drop_schema():
 def teste():
     # TODO: remover este comando após a fase de desenvolvimento
 
-    date_time_str = '2021-05-11T14:34:11Z'
+    date_time_str = '2019-02-02 00:00:00'
     # insert_log_update_tweets('gileadekelvin', date_time_str)
     # insert_tweet('1', 'gileadekelvin', text='sorria')
     # insert_tweet('2', 'gileadekelvin', text='o tempo cuida')
     # delete_tweet('2')
     # delete_log_update_tweets('gileadekelvin')
 
-    objects = []
-    l = dict(username='MarceloFreixo', updated=date_time_str)
-    u = dict(id_tweet='1', username='MarceloFreixo', text='tweet1')
-    u2 = dict(id_tweet='2', username='MarceloFreixo', text='tweet')
-    objects.append(u)
-    objects.append(u2)
-    upsert_tweets_username(l, objects)
+    # objects = []
+    # l = dict(username='MarceloFreixo', updated=date_time_str)
+    # u = dict(id_tweet='1', username='MarceloFreixo', text='tweet1')
+    # u2 = dict(id_tweet='2', username='MarceloFreixo', text='tweet')
+    # objects.append(u)
+    # objects.append(u2)
+    # upsert_tweets_username(l, objects)
 
-    process_tweets_by_username('MarceloFreixo')
+    process_tweets_by_username('felipeneto', datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S'))
 
 
 cli.add_command(create_schema)
