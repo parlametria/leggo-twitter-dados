@@ -13,7 +13,7 @@ from services.database.upsert_tweets import upsert_tweets_username
 from models.log_update_tweets import Log_update_tweets
 
 TZ = pytz.timezone('America/Recife')
-SINCE_DEFAULT = '2021-05-10 00:00:00'
+SINCE_DEFAULT = '2019-02-01 00:00:00'
 
 
 def process_tweets_list(datapath, until_date=None):
