@@ -49,3 +49,28 @@ fetch_tweets <- function() {
 
   return(tweets_filtrados)
 }
+
+
+#' @title Recupera os tweets baixados pelo crawler do repositório
+#' @description Realiza a consulta para baixar os dados de tweets do banco de dados
+#' @return Dataframe com os tweets
+fetch_tweets_raw <- function() {
+  library(tidyverse)
+  source(here::here("code/tweets/constants_tweets.R"))
+  
+  tryCatch({
+    con <- DBI::dbConnect(RPostgres::Postgres(),
+                          dbname = POSTGRES_TWEETS_DATABASE, 
+                          host = POSTGRES_TWEETS_HOST, 
+                          port = POSTGRES_TWEETS_PORT,
+                          user = POSTGRES_TWEETS_USER,
+                          password = POSTGRES_TWEETS_PASS)
+    message("Acesso criado ao BD dos tweets com sucesso")
+    }, 
+    error = function(e) stop(paste0("Erro ao tentar se conectar ao BD doss tweets: ",e))
+  )
+  
+  res <- DBI::dbGetQuery(con, "SELECT * from tweet_raw;")
+  
+  return(res)
+}
