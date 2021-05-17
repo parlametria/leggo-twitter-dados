@@ -1,3 +1,6 @@
 git+https://github.com/JustAnotherArchivist/snscrape.git
 pandas
+psycopg2-binary
 argparse
+SQLAlchemy==1.4.15
+click==7.0
