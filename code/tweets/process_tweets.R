@@ -3,9 +3,17 @@
   library(stringr)
   
   df %>%
-    mutate(sigla = str_extract(tolower(text), "(pl|pec|mp(v|)|pln) ?n?º? ?\\d*\\.?\\d+\\/?\\d*"))%>%
+    mutate(sigla = str_extract(tolower(text), "(pl(n|s|p|)|pec|mp(v|)|pdl|pdc|prc) ?n?º? ?\\d*\\.?\\d+\\/?\\d*")) %>%
     mutate(sigla_processada = gsub("º| |\\.", "", sigla) %>% tolower()) %>%
-    mutate(sigla_processada = gsub("mpv", "mp", sigla_processada))
+    mutate(sigla_processada = gsub("mpv", "mp", sigla_processada)) %>% 
+    separate(sigla_processada, c("sigla_nome", "ano"), sep = "/") %>%  
+    mutate(ano = case_when(
+      nchar(ano) == 4 ~ ano,
+      as.integer(ano) > 70 ~ paste0("19", ano),
+      as.integer(ano) <= 70 ~ paste0("20", ano),
+      TRUE ~ ""
+    )) %>% 
+    mutate(sigla_processada = if_else(ano == "", sigla_nome, paste0(sigla_nome, "/", ano)))
 }
 
 .process_sigla_proposicao <- function(df) {
@@ -58,7 +66,8 @@ processa_tweets <- function(tweets_datapath, proposicoes_datapath) {
   
   tweets_com_mencoes <- tweets_proposicoes_com_ano %>%
     bind_rows(tweets_proposicoes_sem_ano) %>% 
-    distinct(id_tweet, id_proposicao, username, text, date, url, reply_count, retweet_count, like_count, quote_count, sigla_processada)
+    distinct(id_tweet, id_proposicao, .keep_all = TRUE) %>% 
+    select(id_tweet, id_proposicao, username, text, date, url, reply_count, retweet_count, like_count, quote_count, sigla_processada)
   
   return(tweets_com_mencoes)
 }
