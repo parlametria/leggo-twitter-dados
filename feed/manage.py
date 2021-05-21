@@ -26,6 +26,7 @@ def create_tables():
     execute_migration('/code/scripts/create/create_tema_proposicao.sql')
     execute_migration('/code/scripts/create/create_agenda.sql')
     execute_migration('/code/scripts/create/create_agenda_proposicao.sql')
+    execute_migration('/code/scripts/create/create_tweet_raw_info.sql')
 
 @click.command()
 def import_data():
@@ -43,6 +44,7 @@ def update_data():
     execute_migration('/code/scripts/update/update_tema_proposicao.sql')
     execute_migration('/code/scripts/update/update_agenda.sql')
     execute_migration('/code/scripts/update/update_agenda_proposicao.sql')
+    execute_migration('/code/scripts/update/update_tweet_raw_info.sql')
 
 @click.command()
 @click.option('-d', '--drop')
