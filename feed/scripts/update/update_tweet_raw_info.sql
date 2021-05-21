@@ -13,7 +13,8 @@ DO
   UPDATE
   SET 
     total_tweets = EXCLUDED.total_tweets,
-    total_parlamentares = EXCLUDED.total_parlamentares;
+    total_parlamentares = EXCLUDED.total_parlamentares,
+    total_influenciadores = EXCLUDED.total_influenciadores;
 
 DROP TABLE temp_tweet_raw_info;
 
