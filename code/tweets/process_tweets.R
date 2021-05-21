@@ -1,3 +1,7 @@
+#' @title Extrair sigla de texto do tweet
+#' @description A partir do texto do tweet, cria uma sigla com a menção de alguma proposição no formato plxxx/yyyy
+#' @param df Data frame com tweets com ao menos o campo `text`
+#' @return Dataframe com a nova coluna `sigla_processada`
 .extract_sigla <- function(df) {
   library(tidyverse)
   library(stringr)
@@ -17,6 +21,10 @@
     mutate(sigla_processada = if_else(ano == "", sigla_nome, paste0(sigla_nome, "/", ano)))
 }
 
+#' @title Processa sigla de proposição
+#' @description Transforma a sigla de uma proposição no formato padrão para comparação
+#' @param df Data frame com proposições com ao menos o campo `sigla`
+#' @return Dataframe com a nova coluna `sigla_processada`
 .process_sigla_proposicao <- function(df) {
   library(tidyverse)
   library(stringr)
@@ -25,6 +33,10 @@
     mutate(sigla_processada = tolower(str_remove_all(sigla, " ")))
 }
 
+#' @title Remove ano da sigla
+#' @description Remove o ano da sigla de uma proposição
+#' @param df Data frame com proposições com ao menos o campo `sigla`
+#' @return Dataframe com a nova coluna `sigla_processada`
 .remover_ano_sigla <- function(df) {
   library(tidyverse)
   library(stringr)
@@ -34,6 +46,11 @@
     mutate(sigla_processada = str_remove_all(sigla_processada, " "))
 }
 
+#' @title Mapeia siglas que não apresentam ano (i.e. PL32) entre tweets e proposições
+#' @description Remove o ano das siglas para comparar com tweets que não mencionaram o ano
+#' @param tweets Data frame com tweets com ao menos o campo `sigla_processada`
+#' @param proposicoes Data frame com proposições com ao menos o campo `sigla`
+#' @return Dataframe com tweets que mencionaram proposições sem usar o ano
 .mapeia_citadas_sem_ano_para_id <- function(tweets, proposicoes) {
   proposicoes_sem_ano <- .remover_ano_sigla(proposicoes)
   tweets_proposicoes_sem_ano <- tweets %>%
@@ -48,6 +65,11 @@
   return(tweets_proposicoes_sem_ano)
 }
 
+#' @title Processa tweets
+#' @description Realiza o processamento de tweets verificando menções à proposições
+#' @param tweets_datapath Caminho para o csv de tweets a serem processados
+#' @param proposicoes_datapath Caminho para o csv de todas as proposições
+#' @return Dataframe com tweets que mencionaram proposições monitoradas
 processa_tweets <- function(tweets_datapath, proposicoes_datapath) {
   library(tidyverse)
   
