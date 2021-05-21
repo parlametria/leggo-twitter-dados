@@ -30,7 +30,8 @@
   library(stringr)
   
   df %>%
-    mutate(sigla_processada = tolower(str_remove_all(sigla, " ")))
+    mutate(sigla_processada = tolower(str_remove_all(sigla, " "))) %>%
+    mutate(sigla_processada = gsub("mpv", "mp", sigla_processada)) 
 }
 
 #' @title Remove ano da sigla
