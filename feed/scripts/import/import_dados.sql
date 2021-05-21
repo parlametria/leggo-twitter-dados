@@ -6,3 +6,4 @@
 \copy agenda_proposicao FROM '/data/bd/agendas/agendas_proposicoes.csv' WITH NULL AS 'NA' DELIMITER ',' CSV HEADER;
 \copy tema_proposicao FROM '/data/bd/temas/temas_proposicoes.csv' WITH NULL AS 'NA' DELIMITER ',' CSV HEADER;
 \copy tweet_proposicao FROM '/data/bd/tweets/tweets_proposicoes.csv' WITH NULL AS 'NA' DELIMITER ',' CSV HEADER;
+\copy tweet_raw_info FROM '/data/bd/tweet_raw_info.csv' WITH NULL AS 'NA' DELIMITER ',' CSV HEADER;
