@@ -1,5 +1,5 @@
 library(tidyverse)
-source(here::here("code/tweets/fetcher_tweets.R"))
+source(here::here("code/tweets/process_tweets.R"))
 
 if(!require(optparse)){
   install.packages("optparse")
@@ -24,10 +24,38 @@ opt = parse_args(opt_parser)
 
 saida <- opt$out
 
-export_tweets <- function(saida = here::here("data/tweets/tweets.csv")) {
+export_tweets <- function(tweets_to_process_datapath = here::here("data/tweets/tweets_to_process.csv"),
+                          proposicoes_datapath = here::here("data/proposicoes/proposicoes.csv"),
+                          tweets_processados_datapath = here::here("data/tweets/tweets_processados.csv"),
+                          saida = here::here("data/tweets/tweets.csv")) {
   message("Iniciando processamento de tweets...")
-  message("Baixando dados...")
-  tweets <- fetch_tweets()
+  message("Recuperando tweets...")
+  tweets_com_mencoes <- processa_tweets(tweets_to_process_datapath, proposicoes_datapath)
+  
+  tweets_recem_processados <-
+    read_csv(tweets_to_process_datapath,
+             col_types = cols(id_tweet = col_character()))
+  tweets_processados <-
+    read_csv(tweets_processados_datapath,
+             col_types = cols(id_tweet = col_character())) %>%
+    bind_rows(tweets_recem_processados) %>%
+    distinct(id_tweet)
+  
+  message(paste0("Salvando ids de tweets processados em ", tweets_processados_datapath))
+  write_csv(tweets_processados, tweets_processados_datapath)
+  
+  tweets <-
+    read_csv(saida,
+             col_types = cols(id_tweet = col_character(),
+                              id_proposicao = col_character(),
+                              username = col_character(),
+                              text = col_character(),
+                              date = col_datetime(),
+                              url = col_character(),
+                              sigla_processada = col_character(),
+                              .default = col_number())) %>% 
+    bind_rows(tweets_com_mencoes) %>%
+    distinct(id_tweet, id_proposicao, .keep_all = TRUE)
   
   message(paste0("Salvando o resultado em ", saida))
   write_csv(tweets, saida)
@@ -36,5 +64,5 @@ export_tweets <- function(saida = here::here("data/tweets/tweets.csv")) {
 }
 
 if (!interactive()) {
-  export_tweets(saida)
+  export_tweets(saida = saida)
 }
