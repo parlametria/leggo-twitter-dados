@@ -1,4 +1,6 @@
 import click
+from datetime import datetime
+import pytz
 
 from config.log import logger
 from services.database.ddl import create_tables, drop_tables
@@ -24,8 +26,12 @@ def drop_schema():
 
 @click.command()
 @click.option('-l', '--lista_usernames')
-def process_tweets(lista_usernames):
-    process_tweets_list(lista_usernames)
+@click.option('-d', '--until_date')
+def process_tweets(lista_usernames, until_date=None):
+    if (until_date is not None):
+        until_date = datetime.strptime(until_date + ' 00:00:00', '%Y-%m-%d %H:%M:%S')
+        until_date = pytz.timezone('America/Recife').localize(until_date)
+    process_tweets_list(lista_usernames, until_date)
 
 
 cli.add_command(create_schema)
