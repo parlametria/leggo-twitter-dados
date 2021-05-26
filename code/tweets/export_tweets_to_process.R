@@ -11,7 +11,7 @@ args = commandArgs(trailingOnly=TRUE)
 message("Use --help para mais informações\n")
 
 option_list = list(
-  make_option(c("-o", "--out"), type="character", default=here::here("data/tweets/tweets_raw.csv"), 
+  make_option(c("-o", "--out"), type="character", default=here::here("data/tweets/tweets_to_process.csv"), 
               help="nome do arquivo de saída [default= %default]", metavar="character")
 ) 
 
@@ -20,9 +20,9 @@ opt = parse_args(opt_parser)
 
 saida <- opt$out
 
-export_tweets <- function(saida = here::here("data/tweets/tweets_raw.csv")) {
-  message("Recuperando tweets Raw do banco de dados...")
-  tweets <- fetch_tweets_raw()
+export_tweets <- function(saida = here::here("data/tweets/tweets_to_process.csv")) {
+  message("Recuperando tweets que ainda não foram processados do banco de dados...")
+  tweets <- fetch_tweets_to_process()
   
   message(paste0("Salvando o resultado em ", saida))
   write_csv(tweets, saida)

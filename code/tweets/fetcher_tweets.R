@@ -51,10 +51,10 @@ fetch_tweets <- function() {
 }
 
 
-#' @title Recupera os tweets baixados pelo crawler do repositório
+#' @title Recupera os tweets baixados pelo crawler do repositório mas que ainda não foram processados pelo leggo-twitter-dados
 #' @description Realiza a consulta para baixar os dados de tweets do banco de dados
 #' @return Dataframe com os tweets
-fetch_tweets_raw <- function() {
+fetch_tweets_to_process <- function() {
   library(tidyverse)
   source(here::here("code/tweets/constants_tweets.R"))
   
@@ -67,10 +67,18 @@ fetch_tweets_raw <- function() {
                           password = POSTGRES_TWEETS_PASS)
     message("Acesso criado ao BD dos tweets com sucesso")
     }, 
-    error = function(e) stop(paste0("Erro ao tentar se conectar ao BD doss tweets: ",e))
+    error = function(e) stop(paste0("Erro ao tentar se conectar ao BD dos tweets: ",e))
   )
   
-  res <- DBI::dbGetQuery(con, "SELECT * from tweet_raw;")
+  res <- DBI::dbGetQuery(
+    con,
+    paste0(
+      "SELECT r.* FROM tweet_raw AS r ",
+      "LEFT JOIN tweet_processado AS p ",
+      "ON r.id_tweet = p.id_tweet ",
+      "WHERE p.id_tweet IS NULL;"
+    )
+  )
   
   return(res)
 }

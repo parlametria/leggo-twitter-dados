@@ -17,7 +17,7 @@ help:
 	@echo "\t$(b)r-export-data url="https://api.leggo.org.br"$(s)\t\tExecuta o processamento de dados (fetchers) para Proposições, parlamentares e tweets"
 	@echo "\t$(b)r-export-data-db-format$(s)\tExecuta o processamentos dos dados para o formato do BD"
 	@echo "\t$(b)feed-do-migrations$(s)\tAtualiza as tabelas para o Banco de dados"
-	@echo "\t$(b)r-export-tweets-raw$(s)\tRecupera os tweets (raw) do banco de dados e salva em csv"
+	@echo "\t$(b)r-export-tweets-to-process$(s)\tRecupera os tweets do banco de dados que ainda não foram processados e salva em csv"
 	@echo "\t$(b)feed-create-table-tweets-processados$(s)\tCria tabela de tweets processados"
 	@echo "\t$(b)feed-drop-table-tweets-processados$(s)\tDropa tabela de tweets processados"
 	@echo "\t$(b)feed-import-data-tweets-processados$(s)\tImporta dados de tweets processados a partir do csv"
@@ -54,9 +54,9 @@ r-export-data-db-format:
 feed-do-migrations:
 	docker-compose run --no-deps --rm feed python manage.py do-migrations
 .PHONY: feed-do-migrations
-r-export-tweets-raw:
-	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/tweets/export_tweets_raw.R"
-.PHONY: r-export-tweets-raw
+r-export-tweets-to-process:
+	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/tweets/export_tweets_to_process.R"
+.PHONY: r-export-tweets-to-process
 feed-create-table-tweets-processados:
 	docker-compose run --no-deps --rm feed python manage.py create-table-tweets-processados
 .PHONY: feed-create-table-tweets-processados
