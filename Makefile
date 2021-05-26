@@ -18,6 +18,10 @@ help:
 	@echo "\t$(b)r-export-data-db-format$(s)\tExecuta o processamentos dos dados para o formato do BD"
 	@echo "\t$(b)feed-do-migrations$(s)\tAtualiza as tabelas para o Banco de dados"
 	@echo "\t$(b)r-export-tweets-raw$(s)\tRecupera os tweets (raw) do banco de dados e salva em csv"
+	@echo "\t$(b)feed-create-table-tweets-processados$(s)\tCria tabela de tweets processados"
+	@echo "\t$(b)feed-drop-table-tweets-processados$(s)\tDropa tabela de tweets processados"
+	@echo "\t$(b)feed-import-data-tweets-processados$(s)\tImporta dados de tweets processados a partir do csv"
+	@echo "\t$(b)eed-update-data-tweets-processados$(s)\tAtualiza dados da tabela de tweets processados"
 .PHONY: help
 bd-container-shell:
 	docker exec -it postgres-leggo-twitter psql -d leggotwitter -U postgres
@@ -53,3 +57,15 @@ feed-do-migrations:
 r-export-tweets-raw:
 	docker exec -it r-leggo-twitter bash -c "Rscript /leggo-twitter-dados/code/tweets/export_tweets_raw.R"
 .PHONY: r-export-tweets-raw
+feed-create-table-tweets-processados:
+	docker-compose run --no-deps --rm feed python manage.py create-table-tweets-processados
+.PHONY: feed-create-table-tweets-processados
+feed-drop-table-tweets-processados:
+	docker-compose run --no-deps --rm feed python manage.py drop-table-tweets-processados
+.PHONY: feed-drop-table-tweets-processados
+feed-import-data-tweets-processados:
+	docker-compose run --no-deps --rm feed python manage.py import-data-tweets-processados
+.PHONY: feed-import-data-tweets-processados
+feed-update-data-tweets-processados:
+	docker-compose run --no-deps --rm feed python manage.py update-data-tweets-processados
+.PHONY: feed-update-data-tweets-processados

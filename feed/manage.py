@@ -64,6 +64,27 @@ def drop_tables(drop):
         print("Operação não realizada!")
 
 @click.command()
+def create_table_tweets_processados():
+    """Cria tabela de tweets processados"""
+    execute_migration('/code/scripts/create/create_tweet_processado.sql')
+
+@click.command()
+def import_data_tweets_processados():
+    """Importa dados para a tabela de tweets processados"""
+    execute_migration('/code/scripts/import/import_tweet_processado.sql')
+
+@click.command()
+def update_data_tweets_processados():
+    """Atualiza os dados da tabela de tweets processados"""
+    execute_migration('/code/scripts/update/update_tweet_processado.sql')
+
+@click.command()
+def drop_table_tweets_processados():
+    """Dropa tabela de tweets processados"""
+    execute_migration('/code/scripts/drop/drop_tweet_processado.sql')
+
+
+@click.command()
 def shell():
     """Acessa terminal do banco de dados"""
     subprocess.run(['psql', '-h', host, '-U', user, '-d', db])
@@ -83,6 +104,11 @@ cli.add_command(import_data)
 cli.add_command(update_data)
 cli.add_command(drop_tables)
 cli.add_command(do_migrations)
+cli.add_command(create_table_tweets_processados)
+cli.add_command(import_data_tweets_processados)
+cli.add_command(update_data_tweets_processados)
+cli.add_command(drop_table_tweets_processados)
+
 
 if __name__ == '__main__':
     cli()
