@@ -21,7 +21,7 @@ help:
 	@echo "\t$(b)feed-create-table-tweets-processados$(s)\tCria tabela de tweets processados"
 	@echo "\t$(b)feed-drop-table-tweets-processados$(s)\tDropa tabela de tweets processados"
 	@echo "\t$(b)feed-import-data-tweets-processados$(s)\tImporta dados de tweets processados a partir do csv"
-	@echo "\t$(b)eed-update-data-tweets-processados$(s)\tAtualiza dados da tabela de tweets processados"
+	@echo "\t$(b)feed-update-data-tweets-processados$(s)\tAtualiza dados da tabela de tweets processados"
 .PHONY: help
 bd-container-shell:
 	docker exec -it postgres-leggo-twitter psql -d leggotwitter -U postgres
