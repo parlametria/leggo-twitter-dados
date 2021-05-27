@@ -47,34 +47,48 @@ library(tidyverse)
 #' @title Processa os dados dos tweets no formato do banco.
 #' @description Retorna os dados dos tweets processados.
 #' @param tweets_datapath Caminho para o csv de tweets
-#' @param parlamentares_datapath Caminho para o csv de parlamentares
+#' @param usuarios_datapath Caminho para o csv de usuários monitorados
 #' @return Dataframe com informações processadas dos tweets
 process_tweets <-
   function(tweets_datapath = here::here("data/tweets/tweets.csv"),
-           parlamentares_datapath = here::here("data/bd/parlamentares/parlamentares.csv")) {
+           usuarios_datapath = here::here("data/usuarios/usuarios.csv")) {
     source(here::here("code/processor/parlamentares/processor_parlamentares.R"))
     
+    usuarios <- read_csv(usuarios_datapath) %>% 
+      select(username, id_parlamentar, casa)
+    
     tweets <-
-      read_csv(tweets_datapath, col_types = "ccccccccc") %>%
+      read_csv(tweets_datapath, col_types = cols(
+        reply_count = "i",
+        retweet_count = "i",
+        like_count = "i",
+        quote_count = "i",
+        .default = "c"
+      ))
+    
+    tweets <- tweets %>%
+      left_join(usuarios, by = c("username")) %>% 
       .generate_id_parlamentar_parlametria() %>%
       select(-c(id_parlamentar, casa))
     
-    parlamentares <-
-      read_csv(parlamentares_datapath, col_types = cols(.default = "c"))
-    
     tweets <- tweets %>%
-      inner_join(parlamentares, by = "id_parlamentar_parlametria") %>%
+      group_by(id_tweet) %>% 
+      mutate(interactions = sum(reply_count,
+                                retweet_count,
+                                like_count,
+                                quote_count,
+                                na.rm = T)) %>%
       select(
         id_tweet,
         id_parlamentar_parlametria,
         username,
-        created_at,
+        created_at = date,
         text,
         interactions,
-        url = status_url
-      ) %>% 
-      group_by(id_tweet) %>% 
-      mutate(interactions = max(interactions), created_at = last(created_at)) %>% 
+        url
+      ) %>%
+      mutate(interactions = max(interactions),
+             created_at = last(created_at)) %>%
       distinct(id_tweet, .keep_all = TRUE)
     
     return(tweets)
@@ -93,18 +107,15 @@ process_tweets_proposicoes <-
            proposicoes_datapath = here::here("data/proposicoes/proposicoes.csv"),
            relatorias_datapath = here::here("data/relatorias/relatorias.csv")) {
     
-    tweets_com_parlamentares_em_exercicio <-
-      read_csv(tweets_processados_datapath, col_types = "ccccccc") %>%
-      select(id_tweet, id_parlamentar_parlametria) %>%
-      distinct()
-    
+    tweets_parlamentares <-
+      read_csv(tweets_processados_datapath, col_types = cols(.default = "c")) %>% 
+      distinct(id_tweet, id_parlamentar_parlametria)
+
     tweets <-
-      read_csv(tweets_datapath, col_types = "ccccccccc") %>%
-      select(id_tweet, sigla = citadas) %>%
+      read_csv(tweets_datapath, col_types = cols(.default = "c")) %>%
+      select(id_tweet, id_proposicao_leggo = id_proposicao) %>%
       distinct() %>%
-      inner_join(tweets_com_parlamentares_em_exercicio, by = "id_tweet") %>%
-      filter(!is.na(sigla)) %>% 
-      .remove_ponto_sigla()
+      inner_join(tweets_parlamentares, by = "id_tweet")
     
     proposicoes <-
       read_csv(proposicoes_datapath, col_types = cols(.default = "c")) %>%
@@ -115,7 +126,7 @@ process_tweets_proposicoes <-
       distinct()
     
     tweets_proposicoes <- tweets %>%
-      inner_join(proposicoes, by = c("sigla")) %>%
+      inner_join(proposicoes, by = c("id_proposicao_leggo")) %>%
       filter(!is.na(id_tweet),!is.na(id_proposicao_leggo)) %>%
       distinct() %>% 
       left_join(relatorias, by = c("id_parlamentar_parlametria",
@@ -125,3 +136,46 @@ process_tweets_proposicoes <-
 
     return(tweets_proposicoes)
   }
+
+#' @title Processa os dados do sumário de tweets processados e usuários monitorados.
+#' @description Retorna os dados de total de tweets processados,
+#' total de parlamentares e influenciadores monitorados.
+#' @param tweets_processados_datapath Caminho para o csv de tweets processados
+#' @param usuarios_datapath Caminho para o csv de usuários
+#' @return Dataframe com dados do sumário de tweets processados e usuários monitorados
+process_tweets_raw_info <- function(tweets_processados_datapath = here::here("data/tweets/tweets_processados.csv"),
+                                    usuarios_datapath = here::here("data/usuarios/usuarios.csv"),
+                                    parlamentares_datapath = here::here("data/parlamentares/parlamentares.csv")) {
+  source(here::here("code/processor/parlamentares/processor_parlamentares.R"))
+  
+  total_tweets_processados <-
+    length(count.fields(tweets_processados_datapath, sep = ",")) - 1
+  
+  parlamentares <-
+    read_csv(parlamentares_datapath, col_types = cols(.default = "c")) %>%
+    distinct(id_parlamentar_parlametria) %>% 
+    mutate(em_exercicio = T)
+  
+  usuarios <- read_csv(usuarios_datapath) %>%
+    .generate_id_parlamentar_parlametria() %>% 
+    left_join(parlamentares, by = "id_parlamentar_parlametria") 
+  
+  # Calcula nº de parlamentares em exercício que possuem pelo
+  # menos uma conta no Twittter
+  usuarios_parlamentares_em_exercicio <- usuarios %>% 
+    filter(!is.na(id_parlamentar_parlametria), em_exercicio) %>% 
+    distinct(id_parlamentar_parlametria) %>% 
+    nrow()
+  
+  total_influencers <- usuarios %>%
+    filter(is.na(id_parlamentar_parlametria) | is.na(em_exercicio)) %>% 
+    nrow()
+  
+  tweet_raw_info_df <-
+    tibble(id = 1,
+           total_tweets = total_tweets_processados,
+           total_parlamentares = usuarios_parlamentares_em_exercicio,
+           total_influencers = total_influencers) 
+  
+  return(tweet_raw_info_df)
+}
