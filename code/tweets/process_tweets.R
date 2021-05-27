@@ -68,13 +68,13 @@
 
 #' @title Processa tweets
 #' @description Realiza o processamento de tweets verificando menções à proposições
-#' @param tweets_datapath Caminho para o csv de tweets a serem processados
+#' @param tweets_to_process_datapath Caminho para o csv de tweets a serem processados
 #' @param proposicoes_datapath Caminho para o csv de todas as proposições
 #' @return Dataframe com tweets que mencionaram proposições monitoradas
-processa_tweets <- function(tweets_datapath, proposicoes_datapath) {
+processa_tweets <- function(tweets_to_process_datapath, proposicoes_datapath) {
   library(tidyverse)
   
-  tweets <- read_csv(tweets_datapath)
+  tweets <- read_csv(tweets_to_process_datapath, col_types = cols(id_tweet = col_character()))
   tweets <- .extract_sigla(tweets)
   tweets <- tweets %>%  
     filter(!is.na(sigla_processada))

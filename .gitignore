@@ -5,6 +5,7 @@
 .env.local
 
 **/__pycache__/
+.vscode
 
 # Arquivos grandes demais para manter no repo
 data/tweets/tweets_parlamentares_todos.zip

@@ -16,6 +16,8 @@ services:
   r-twitter-service:
     environment:
       - PASSWORD=${PASSWORD:-secret}
+    env_file:
+      - ${TWITTER_API_DADOS_PATH:-.}/.env
     volumes:
       - ${TWITTER_API_DADOS_PATH:-.}/code:/leggo-twitter-dados/code
       - ${TWITTER_API_DADOS_PATH:-.}/data:/leggo-twitter-dados/data
