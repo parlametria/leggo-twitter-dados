@@ -7,6 +7,6 @@ CREATE TABLE IF NOT EXISTS "tweet_raw_info" (
     "total_parlamentares" INT,
     "total_influenciadores" INT,
     PRIMARY KEY("id")
-)
+);
 
 COMMIT;
