@@ -48,14 +48,27 @@ library(tidyverse)
 #' @description Retorna os dados dos tweets processados.
 #' @param tweets_datapath Caminho para o csv de tweets
 #' @param usuarios_datapath Caminho para o csv de usuários monitorados
+#' @param parlamentares_datapath Caminho para o csv de parlamentares
+#' já processados
 #' @return Dataframe com informações processadas dos tweets
 process_tweets <-
   function(tweets_datapath = here::here("data/tweets/tweets.csv"),
-           usuarios_datapath = here::here("data/usuarios/usuarios.csv")) {
+           usuarios_datapath = here::here("data/usuarios/usuarios.csv"),
+           parlamentares_datapath = here::here("data/bd/parlamentares/parlamentares.csv")) {
     source(here::here("code/processor/parlamentares/processor_parlamentares.R"))
     
-    usuarios <- read_csv(usuarios_datapath) %>% 
-      select(username, id_parlamentar, casa)
+    parlamentares <- read_csv(parlamentares_datapath,
+                              col_types = cols(.default = "c")) %>% 
+      select(id_parlamentar_parlametria) %>% 
+      mutate(em_exercicio = TRUE)
+    
+    usuarios <- read_csv(usuarios_datapath) %>%
+      .generate_id_parlamentar_parlametria() %>% 
+      left_join(parlamentares, by = "id_parlamentar_parlametria") %>% 
+      mutate(id_parlamentar_parlametria = if_else(em_exercicio == TRUE,
+                                                  id_parlamentar_parlametria,
+                                                  NA_character_)) %>% 
+      select(username, id_parlamentar_parlametria)
     
     tweets <-
       read_csv(tweets_datapath, col_types = cols(
@@ -67,9 +80,7 @@ process_tweets <-
       ))
     
     tweets <- tweets %>%
-      left_join(usuarios, by = c("username")) %>% 
-      .generate_id_parlamentar_parlametria() %>%
-      select(-c(id_parlamentar, casa))
+      left_join(usuarios, by = c("username"))
     
     tweets <- tweets %>%
       group_by(id_tweet) %>% 
