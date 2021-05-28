@@ -132,7 +132,8 @@ process_tweets_proposicoes <-
       left_join(relatorias, by = c("id_parlamentar_parlametria",
                                    "id_proposicao_leggo" = "id_proposicao")) %>% 
       mutate(relator_proposicao = !is.na(casa)) %>% 
-      select(id_tweet, sigla, id_proposicao_leggo, relator_proposicao)
+      select(id_tweet, sigla, id_proposicao_leggo, relator_proposicao) %>% 
+      distinct(id_tweet, id_proposicao_leggo, .keep_all = T)
 
     return(tweets_proposicoes)
   }
