@@ -32,18 +32,6 @@ library(tidyverse)
   return(proposicoes_sem_ambiguidade)
 }
 
-#' @title Remove o ponto da sigla das proposições citadas nos tweets
-#' @description Remove o ponto da sigla das proposições citadas nos tweets
-#' @param tweets Dataframe de tweets com citacoes a proposições
-#' @return Dataframe identico porém com a sigla modificada
-.remove_ponto_sigla <- function(tweets) {
-  
-  tweets_sem_ponto <- tweets %>% 
-    mutate(sigla = str_remove(sigla, "\\."))
-
-  return(tweets_sem_ponto)
-}
-
 #' @title Processa os dados dos tweets no formato do banco.
 #' @description Retorna os dados dos tweets processados.
 #' @param tweets_datapath Caminho para o csv de tweets
@@ -87,7 +75,6 @@ process_tweets <-
       mutate(interactions = sum(reply_count,
                                 retweet_count,
                                 like_count,
-                                quote_count,
                                 na.rm = T)) %>%
       select(
         id_tweet,
