@@ -27,5 +27,6 @@ source(here::here("code/parlamentares/export_parlamentares.R"))
 source(here::here("code/proposicoes/export_proposicoes.R"))
 source(here::here("code/tweets/export_tweets.R"))
 source(here::here("code/relatorias/export_relatorias.R"))
+source(here::here("code/usuarios/export_usuarios.R"))
 
 message("Concluído!")

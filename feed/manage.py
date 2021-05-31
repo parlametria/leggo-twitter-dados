@@ -97,6 +97,8 @@ def do_migrations():
     execute_migration('/code/scripts/migrations/0003_tweet.sql')
     execute_migration('/code/scripts/migrations/0004_tweet.sql')
     execute_migration('/code/scripts/migrations/0005_proposicao.sql')
+    execute_migration('/code/scripts/migrations/0006_tweet_raw_info.sql')
+    execute_migration('/code/scripts/migrations/0007_tema.sql')
 
 cli.add_command(shell)
 cli.add_command(create_tables)
