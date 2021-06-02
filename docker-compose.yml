@@ -4,6 +4,7 @@ services:
 
   postgres:
     image: postgres:12.4-alpine
+    shm_size: 4g
     container_name: postgres-leggo-twitter
     restart: unless-stopped
     volumes:
