@@ -1,0 +1,1 @@
+\copy tweet_processado FROM '/data/tweets/tweets_processados.csv' WITH NULL AS 'NA' DELIMITER ',' CSV HEADER;

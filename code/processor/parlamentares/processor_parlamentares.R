@@ -8,7 +8,11 @@ library(tidyverse)
 .generate_id_parlamentar_parlametria <- function(df) {
   df <- df %>%
     mutate(casa_enum = if_else(casa == "camara", 1, 2)) %>%
-    mutate(id_parlamentar_parlametria = paste0(casa_enum, id_parlamentar)) %>%
+    mutate(id_parlamentar_parlametria = if_else(
+      !is.na(id_parlamentar),
+      paste0(casa_enum, id_parlamentar),
+      NA_character_
+    )) %>%
     select(-casa_enum)
   
   return(df)

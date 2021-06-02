@@ -33,5 +33,6 @@ source(here::here("code/processor/tweets/export_tweets.R"))
 .export_agendas_proposicoes(saida)
 .export_tweets(saida)
 .export_tweets_proposicoes(saida)
+.export_tweets_raw_info(saida)
 
 message("Concluído!")

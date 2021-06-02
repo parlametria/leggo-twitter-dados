@@ -12,4 +12,6 @@ RUN set -ex && \
     python -m pip --no-cache install -U pip && \
     python -m pip --no-cache install -r /code/scripts/requirements.txt
 
+COPY . .
+
 CMD echo "Imagem do feed-leggo-twitter atualizada"

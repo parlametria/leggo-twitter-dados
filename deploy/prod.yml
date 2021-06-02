@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  feed:
+    env_file:
+      - ${TWITTER_API_DADOS_PATH:-.}/.env.prod
+    volumes:
+      - ${TWITTER_API_DADOS_PATH:-.}/data:/data
+  
+  r-twitter-service:
+    env_file:
+      - ${TWITTER_API_DADOS_PATH:-.}/.env.prod
+    environment:
+      - PASSWORD=${PASSWORD:-secret}
+    volumes:
+      - ${TWITTER_API_DADOS_PATH:-.}/data:/leggo-twitter-dados/data

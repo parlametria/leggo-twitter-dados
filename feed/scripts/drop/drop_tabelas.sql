@@ -6,3 +6,4 @@ DROP TABLE IF EXISTS "tema";
 DROP TABLE IF EXISTS "proposicao";
 DROP TABLE IF EXISTS "tweet";
 DROP TABLE IF EXISTS "parlamentar";
+DROP TABLE IF EXISTS "tweet_raw_info";
