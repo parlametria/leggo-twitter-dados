@@ -7,8 +7,9 @@
   library(stringr)
   
   df %>%
-    mutate(text_sem_links = str_remove_all(text, "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")) %>%
-    mutate(sigla = str_extract(tolower(text_sem_links), "(pl(n|s|p|)|pec|mp(v|)|pdl|pdc|prc) ?n?º? ?\\d*\\.?\\d+\\/?\\d*")) %>%
+    mutate(text_sem_links = str_remove_all(text, "(http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+)|(@[A-Za-z0-9_]+)")) %>%
+    mutate(sigla = str_extract_all(tolower(text_sem_links), "(pl(n|s|p|)|pec|mp(v|)|pdl|pdc|prc) ?n?º? ?\\d*\\.?\\d+\\/?\\d*")) %>%
+    unnest(sigla) %>% 
     mutate(sigla_processada = gsub("º| |\\.", "", sigla) %>% tolower()) %>%
     mutate(sigla_processada = gsub("mpv", "mp", sigla_processada)) %>% 
     separate(sigla_processada, c("sigla_nome", "ano"), sep = "/") %>%  
