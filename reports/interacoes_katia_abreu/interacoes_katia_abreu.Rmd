@@ -1,0 +1,40 @@
+---
+title: "Untitled"
+runtime: shiny
+author: "Hadrizia Santos"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(DT)
+library(hrbrthemes)
+library(scales)
+library(plotly)
+
+theme_set(theme_ipsum_rc())
+options(scipen=999)
+
+knitr::opts_chunk$set(tidy = FALSE,
+                      fig.width = 8,
+                      fig.height = 5,
+                      echo = FALSE,
+                      message = FALSE)
+source(here::here("reports/interacoes_katia_abreu/code/gera_planilha_usuarios_com_interacoes.R"))
+```
+
+```{r}
+dados <- processa_usuarios_com_interacao(here::here("reports/interacoes_katia_abreu/data/tweets_to_process.csv"))
+```
+
+```{r echo=FALSE, context="server"}
+output$table <- 
+  DT::renderDataTable(dados %>% 
+                        select(text, date, mention, url))
+```
+
+
+```{r, echo=FALSE}
+DT::DTOutput("table")
+```

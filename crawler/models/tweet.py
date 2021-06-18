@@ -18,6 +18,7 @@ class Tweet(Base):
     retweet_count = Column(Integer())
     like_count = Column(Integer())
     quote_count = Column(Integer())
+    mentions = Column(Text())
 
     log_update_tweets = relationship(
         "Log_update_tweets", back_populates="tweets")

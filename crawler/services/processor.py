@@ -68,6 +68,9 @@ def process_tweets_by_username(username, until_date=None):
             return(False)
     return(True)
 
+def get_usernames(mentions):
+    usernames = [mention['username'] for mention in mentions]
+    return ";".join(usernames)
 
 def get_tweets_by_username(username, since_date, until_date):
     """
@@ -101,10 +104,16 @@ def get_tweets_by_username(username, since_date, until_date):
                 retweet_count = int(res['retweetCount'])
                 like_count = int(res['likeCount'])
                 quote_count = int(res['quoteCount'])
+                mentions = res["mentionedUsers"]
+                if mentions is None:
+                    mentions = ""
+                else:
+                    mentions = get_usernames(mentions)
                 tweet = dict(id_tweet=id_tweet, username=username, text=text,
                              date=date, url=url,
                              reply_count=reply_count, retweet_count=retweet_count,
-                             like_count=like_count, quote_count=quote_count)
+                             like_count=like_count, quote_count=quote_count,
+                             mentions=mentions)
                 tweets.append(tweet)
             except Exception as e:
                 # print(e)
