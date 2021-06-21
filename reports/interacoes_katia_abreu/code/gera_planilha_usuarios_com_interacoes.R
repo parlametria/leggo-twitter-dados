@@ -9,7 +9,6 @@ processa_usuarios_com_interacao <-
       unnest(mention) %>%
       filter(!is.na(mention), mention != "") %>%
       mutate(mention = paste0("@", tolower(mention))) %>%
-      select(-mentions) %>% 
       mutate(date =  format(as.Date(date), "%d/%m/%Y"))
     return(interacoes_katia_abreu)
   }

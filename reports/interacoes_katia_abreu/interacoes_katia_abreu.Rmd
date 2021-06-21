@@ -1,9 +1,9 @@
 ---
-title: "Untitled"
-runtime: shiny
-author: "Hadrizia Santos"
+title: "A rede de Katia Abreu"
 output: html_document
 ---
+
+Este relatório tem como objetivo investigar **quais são os usuários que Kátia Abreu mais interage no Twitter**. Para isso, utilizamos os tweets da senadora que mencionam algum usuário de 01/02/2019 até 16/06/2021.
 
 ```{r setup, include=FALSE}
 library(ggplot2)
@@ -24,17 +24,77 @@ knitr::opts_chunk$set(tidy = FALSE,
 source(here::here("reports/interacoes_katia_abreu/code/gera_planilha_usuarios_com_interacoes.R"))
 ```
 
+```{r results='hide'}
+dados <-
+  processa_usuarios_com_interacao(here::here(
+    "reports/interacoes_katia_abreu/data/tweets_to_process.csv"
+  )) %>%
+  group_by(id_tweet, mention) %>%
+  mutate(total_engajamento = sum(like_count, reply_count, retweet_count, na.rm = T)) %>%
+  ungroup()
+```
+
+### Os usuários mais mencionados
+
+Dentre os 1.503 tweets da senadora capturados, cerca de `r nrow(count(dados, id_tweet))` são direcionados a pelo menos algum usuário da plataforma. Abaixo podemos ver quais são esses usuários:
+
 ```{r}
-dados <- processa_usuarios_com_interacao(here::here("reports/interacoes_katia_abreu/data/tweets_to_process.csv"))
+dados %>% 
+  count(mention) %>% 
+  arrange(desc(n)) %>% 
+  head(15) %>% 
+  ggplot(aes(y = reorder(mention, n), x = n)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  ylab("username") +
+  xlab("nº de menções") +
+  scale_x_continuous(breaks = seq(0, 10, by = 1))
 ```
 
-```{r echo=FALSE, context="server"}
-output$table <- 
-  DT::renderDataTable(dados %>% 
-                        select(text, date, mention, url))
+### Os tweets com menções de maiores engajamentos
+
+Abaixo é possível ver quais são os usuários mencionados nos tweets da senadora que dão mais engajamento:
+
+```{r}
+dados_eng <- dados %>% 
+  group_by(mention) %>% 
+  mutate(eng = sum(total_engajamento)) %>% 
+  arrange(desc(eng)) %>% 
+  distinct(mention, .keep_all = T) %>% 
+  head(10) 
+
+dados_eng %>% 
+  ggplot(aes(y = reorder(mention, eng), x = eng)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  ylab("username") +
+  xlab("total de engajamento") +
+  scale_x_continuous(breaks = seq(0, max(dados_eng$eng), by = 500))
 ```
 
+### Conteúdo dos tweets
 
-```{r, echo=FALSE}
-DT::DTOutput("table")
+Abaixo temos uma tabela com todos os tweets de Katia Abreu de fev/2019 a jun/2021 que mencionam algum usuário, e está ordenada pelo total de engajamentos (likes, retweets e replies) de cada tweet.
+
+
+```{r}
+datatable(
+  dados %>% 
+    distinct(id_tweet, .keep_all = T) %>% 
+    mutate(url = paste0('<a href="', url ,'">', url, '</a>')) %>% 
+    mutate(mentions = gsub("^", "@", mentions)) %>% 
+    mutate(mentions = gsub(";", "; @", mentions)) %>% 
+    arrange(desc(total_engajamento)) %>% 
+    select(
+      mencoes = mentions,
+      data = date,
+      text,
+      engajamento = total_engajamento,
+      url
+    ), 
+  escape = F,
+  options = list(
+    autoWidth = TRUE,
+    scrollX = TRUE,
+    columnDefs = list(list(width = '350px', targets = c(2)))),
+  rownames= FALSE
+)
 ```
