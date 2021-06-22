@@ -3,7 +3,9 @@ title: "A rede de Katia Abreu"
 output: html_document
 ---
 
-Este relatório tem como objetivo investigar **quais são os usuários que Kátia Abreu mais interage no Twitter**. Para isso, utilizamos os tweets da senadora que mencionam algum usuário de 01/02/2019 até 16/06/2021.
+Este relatório tem como objetivo investigar **quais são os usuários que Kátia Abreu mais interage no Twitter**. Para isso, utilizamos os tweets de Kátia que mencionam algum usuário e dos demais usuários monitorados pelo Painel Parlametria que mencionaram a senadora de 01/02/2019 até 16/06/2021.
+
+A classificação dos usuários foi preenchida pelo [GPS Ideológico da Folha](http://temas.folha.uol.com.br/gps-ideologico/) e pelo Perfil Parlamentar.
 
 ```{r setup, include=FALSE}
 library(ggplot2)
@@ -11,6 +13,7 @@ library(tidyverse)
 library(DT)
 library(hrbrthemes)
 library(scales)
+library(stringr)
 library(plotly)
 
 theme_set(theme_ipsum_rc())
@@ -26,49 +29,194 @@ source(here::here("reports/interacoes_katia_abreu/code/gera_planilha_usuarios_co
 
 ```{r results='hide'}
 dados <-
-  processa_usuarios_com_interacao(here::here(
-    "reports/interacoes_katia_abreu/data/tweets_to_process.csv"
-  )) %>%
+  processa_usuarios_com_interacao(here::here("reports/interacoes_katia_abreu/data/")) %>%
   group_by(id_tweet, mention) %>%
   mutate(total_engajamento = sum(like_count, reply_count, retweet_count, na.rm = T)) %>%
   ungroup()
+
+usuarios <-
+  read_csv(here::here("reports/interacoes_katia_abreu/data/usuarios.csv")) %>%
+  select(username, source, classificacao)
+  
+dados_katia <- dados %>% 
+  filter(username == "katiaabreu") %>% 
+  mutate(mention_p = str_remove(mention, "@")) %>% 
+  left_join(usuarios, by = c("mention_p" = "username")) %>% 
+  select(-mention_p) %>%
+  mutate(classificacao = if_else(is.na(
+    classificacao), "semclassificacao", classificacao
+  )) 
+
+dados_monitorados <- dados %>% 
+  filter(username != "katiaabreu") %>% 
+  left_join(usuarios, by = "username") %>%
+  mutate(classificacao = if_else(is.na(
+    classificacao), "semclassificacao", classificacao
+  ))
+
+
 ```
 
-### Os usuários mais mencionados
+### Com que Kátia fala
 
-Dentre os 1.503 tweets da senadora capturados, cerca de `r nrow(count(dados, id_tweet))` são direcionados a pelo menos algum usuário da plataforma. Abaixo podemos ver quais são esses usuários:
+#### Os usuários mais mencionados
+
+Dentre os 1.503 tweets da senadora capturados, cerca de `r nrow(count(dados_katia, id_tweet))` são direcionados a pelo menos algum usuário da plataforma. Abaixo podemos ver quais são esses usuários:
 
 ```{r}
-dados %>% 
-  count(mention) %>% 
+mais_comentados <- dados_katia %>% 
+  group_by(mention) %>% 
+  mutate(n = n()) %>% 
+  distinct(mention, .keep_all = T) %>% 
   arrange(desc(n)) %>% 
-  head(15) %>% 
-  ggplot(aes(y = reorder(mention, n), x = n)) +
-  geom_bar(stat = "identity", fill = "steelblue") +
+  head(10) %>% 
+  mutate(classificacao = str_split(classificacao, ";") [[1]][[1]])
+
+mais_comentados %>% 
+  ggplot(aes(y = reorder(mention, n), x = n, color=classificacao)) +
+  #geom_bar(stat = "identity") +
+  geom_segment(aes(
+    x = 0,
+    xend = n,
+    y = reorder(mention, n),
+    yend = reorder(mention, n)
+  ), color = "grey") +
+  geom_point(size = 4) +
   ylab("username") +
   xlab("nº de menções") +
-  scale_x_continuous(breaks = seq(0, 10, by = 1))
+  scale_x_continuous(breaks = seq(0, max(mais_comentados$n), by = 5)) +
+  scale_fill_brewer(palette="Set2")
 ```
 
-### Os tweets com menções de maiores engajamentos
+#### Os tweets com menções de maiores engajamentos
 
 Abaixo é possível ver quais são os usuários mencionados nos tweets da senadora que dão mais engajamento:
 
 ```{r}
-dados_eng <- dados %>% 
+dados_eng <- dados_katia %>% 
   group_by(mention) %>% 
   mutate(eng = sum(total_engajamento)) %>% 
   arrange(desc(eng)) %>% 
   distinct(mention, .keep_all = T) %>% 
-  head(10) 
+  head(10) %>% 
+  mutate(classificacao = str_split(classificacao, ";") [[1]][[1]])
 
 dados_eng %>% 
-  ggplot(aes(y = reorder(mention, eng), x = eng)) +
-  geom_bar(stat = "identity", fill = "steelblue") +
+  ggplot(aes(y = reorder(mention, eng), x = eng, color=classificacao)) +
+  #geom_bar(stat="identity", fill = "steelblue") +
+  geom_segment(aes(
+    x = 0,
+    xend = eng,
+    y = reorder(mention, eng),
+    yend = reorder(mention, eng)
+  ), color = "grey") +
+  geom_point(size = 4) +
   ylab("username") +
   xlab("total de engajamento") +
-  scale_x_continuous(breaks = seq(0, max(dados_eng$eng), by = 500))
+  scale_x_continuous(breaks = seq(0, max(dados_eng$eng), by = 1500))
 ```
+
+
+### Quem fala com Kátia
+
+Também coletados os tweets dos usuários monitorados pelo Parlametria que mencionam a senadora. Ao todo, as menções totalizam `r dados_monitorados %>% count(id_tweet) %>% nrow()` tweeets.
+
+
+#### Por tipo de usuário
+
+Abaixo é possível ver o número de menções à senadora por tipo de usuário:
+
+```{r warning=F}
+dados_classificacao <- dados_monitorados %>% 
+  distinct(id_tweet, .keep_all = T) %>% 
+  select(username, total_engajamento) %>% 
+  left_join(usuarios, by = "username") %>%
+  group_by(classificacao) %>% 
+  summarise(engajamento_total = sum(total_engajamento),
+            count = n()) %>% 
+  separate(classificacao, "classificacao") %>% 
+  group_by(classificacao) %>% 
+  summarise(engajamento_total = sum(engajamento_total),
+            count = sum(count)) %>% 
+  arrange(desc(engajamento_total, count)) %>% 
+  mutate(classificacao = if_else(is.na(classificacao), "semclassificacao", classificacao)) %>% 
+  head(10)
+
+dados_classificacao %>%
+  ggplot(aes(y = reorder(classificacao, count), x = count)) +
+  geom_bar(stat = "identity", fill="steelblue") +
+  xlab("nº de menções") +
+  ylab("Classificação")
+```
+
+#### Os usuários que mais mencionam Kátia
+
+Dentre os mais de 1.800 usuários monitorados, encontramos `r dados_monitorados %>% distinct(username) %>% nrow()` que mencionaram a senadora em algum momento de 2019 pra cá. Abaixo listamos os usuários que mais mencionaram Kátia Abreu e a classificação de cada um.
+
+```{r}
+usuarios_classificacao <- dados_monitorados %>% 
+  mutate(username = paste0("@", username)) %>% 
+  distinct(id_tweet, .keep_all = T) %>% 
+  select(username, total_engajamento, classificacao) %>% 
+  group_by(username) %>% 
+  mutate(engajamento_total = sum(total_engajamento),
+            count = n()) %>% 
+  select(-total_engajamento) %>% 
+  distinct() %>% 
+  arrange(desc(count)) %>% 
+  head(15) %>% 
+  mutate(classificacao = str_split(classificacao, ";") [[1]][[1]])
+
+usuarios_classificacao %>% 
+  ggplot(aes(x = count, y = reorder(username, count), color=classificacao)) +
+ # geom_bar(stat = 'identity') +
+  geom_segment(aes(
+    x = 0,
+    xend = count,
+    y = reorder(username, count),
+    yend = reorder(username, count)
+  ), color = "grey") +
+  geom_point(size = 4) +
+  scale_fill_brewer(palette="Set2") +
+  xlab("nº de menções") +
+  ylab("username")
+
+```
+
+#### Menções que tiveram maior engajamento
+
+Abaixo reunimos os usuários que mencionaram a senadora e tiveram grande repercussão em seus tweets, sendo o engajamento a soma de likes, replies e retweets.
+
+```{r}
+eng_classificacao <- dados_monitorados %>%
+  mutate(username = paste0("@", username)) %>%
+  distinct(id_tweet, .keep_all = T) %>%
+  select(username, total_engajamento, classificacao) %>%
+  group_by(username, classificacao) %>% 
+  summarise(max_engajamento = max(total_engajamento)) %>% 
+  arrange(desc(max_engajamento)) %>%
+  head(15) %>% 
+  rowwise(.) %>% 
+  mutate(classificacao = str_split(classificacao, ";") [[1]][[1]])
+ 
+
+eng_classificacao %>% 
+  ggplot(aes(x = max_engajamento, y = reorder(username, max_engajamento), color=classificacao)) +
+ # geom_bar(stat = 'identity') +
+  geom_segment(aes(
+    x = 0,
+    xend = max_engajamento,
+    y = reorder(username, max_engajamento),
+    yend = reorder(username, max_engajamento)
+  ), color = "grey") +
+  geom_point(size = 4) +
+  scale_fill_brewer(palette="Set2") +
+   scale_x_continuous(breaks = seq(0, max(eng_classificacao$max_engajamento), by = 3000)) +
+  xlab("total de engajamento") +
+  ylab("username")
+```
+
+
 
 ### Conteúdo dos tweets
 
@@ -76,25 +224,28 @@ Abaixo temos uma tabela com todos os tweets de Katia Abreu de fev/2019 a jun/202
 
 
 ```{r}
+dados_com_usuarios <- bind_rows(dados_katia, dados_monitorados)
+
 datatable(
-  dados %>% 
+  dados_com_usuarios %>% 
     distinct(id_tweet, .keep_all = T) %>% 
     mutate(url = paste0('<a href="', url ,'">', url, '</a>')) %>% 
-    mutate(mentions = gsub("^", "@", mentions)) %>% 
-    mutate(mentions = gsub(";", "; @", mentions)) %>% 
+    mutate(username = paste0("@", username)) %>% 
     arrange(desc(total_engajamento)) %>% 
     select(
+      username,
       mencoes = mentions,
       data = date,
       text,
       engajamento = total_engajamento,
-      url
+      url,
+      classificacao
     ), 
   escape = F,
   options = list(
     autoWidth = TRUE,
     scrollX = TRUE,
-    columnDefs = list(list(width = '350px', targets = c(2)))),
+    columnDefs = list(list(width = '350px', targets = c(3)))),
   rownames= FALSE
 )
 ```
