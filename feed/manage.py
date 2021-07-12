@@ -100,6 +100,12 @@ def do_migrations():
     execute_migration('/code/scripts/migrations/0006_tweet_raw_info.sql')
     execute_migration('/code/scripts/migrations/0007_tema.sql')
 
+@click.command()
+def export_tweet_raw():
+    """Exporta a tabela tweet_raw para um arquivo csv comprimido"""
+    execute_migration('/code/scripts/export/export_tweet_raw.sql')
+
+
 cli.add_command(shell)
 cli.add_command(create_tables)
 cli.add_command(import_data)
@@ -110,6 +116,7 @@ cli.add_command(create_table_tweets_processados)
 cli.add_command(import_data_tweets_processados)
 cli.add_command(update_data_tweets_processados)
 cli.add_command(drop_table_tweets_processados)
+cli.add_command(export_tweet_raw)
 
 
 if __name__ == '__main__':

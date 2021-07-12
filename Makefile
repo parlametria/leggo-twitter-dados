@@ -22,6 +22,7 @@ help:
 	@echo "\t$(b)feed-drop-table-tweets-processados$(s)\tDropa tabela de tweets processados"
 	@echo "\t$(b)feed-import-data-tweets-processados$(s)\tImporta dados de tweets processados a partir do csv"
 	@echo "\t$(b)feed-update-data-tweets-processados$(s)\tAtualiza dados da tabela de tweets processados"
+	@echo "\t$(b)feed-export-tweet-raw$(s)\tExporta os dados da tabela tweet_raw"
 .PHONY: help
 bd-container-shell:
 	docker exec -it postgres-leggo-twitter psql -d leggotwitter -U postgres
@@ -69,3 +70,6 @@ feed-import-data-tweets-processados:
 feed-update-data-tweets-processados:
 	docker-compose run --no-deps --rm feed python manage.py update-data-tweets-processados
 .PHONY: feed-update-data-tweets-processados
+feed-export-tweet-raw:
+	docker-compose run --no-deps --rm feed python manage.py export-tweet-raw
+.PHONY: feed-export-tweet-raw
