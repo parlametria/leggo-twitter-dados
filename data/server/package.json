@@ -1,0 +1,16 @@
+{
+  "name": "leggo-twitter-data-server",
+  "version": "0.1.0",
+  "description": "Servidor de arquivos do módulo leggo-twitter-dados",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Parlametria",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "serve-index": "^1.9.1"
+  }
+}
