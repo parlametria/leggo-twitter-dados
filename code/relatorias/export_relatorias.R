@@ -13,7 +13,7 @@ message("Use --help para mais informações\n")
 option_list = list(
   make_option(c("-o", "--out"), type="character", default=here::here("data/relatorias/relatorias.csv"), 
               help="nome do arquivo de saída [default= %default]", metavar="character"),
-  make_option(c("-u", "--url"), type="character", default="https://dev.api.leggo.org.br", 
+  make_option(c("-u", "--url"), type="character", default="https://dev.api.parlametria.org.br", 
               help="url da api do parlametria [default= %default]", metavar="character"),
   make_option(c("-p", "--prop"), type="character", default=NULL, 
               help="caminho para o csv de proposições [default= %default]")
@@ -25,7 +25,7 @@ opt = parse_args(opt_parser)
 saida <- opt$out
 api_url <- opt$url
 
-export_relatorias <- function(api_url = "https://dev.api.leggo.org.br",
+export_relatorias <- function(api_url = "https://dev.api.parlametria.org.br",
                               saida = here::here("data/relatorias/relatorias.csv")) {
   message("Iniciando processamento de relatorias...")
   message("Baixando dados...")

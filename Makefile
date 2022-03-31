@@ -14,7 +14,7 @@ help:
 	@echo "\t$(b)feed-update-data$(s)\tAtualiza dados para as tabelas para o Banco de dados"
 	@echo "\t$(b)feed-drop-tables$(s)\tAtenção: Dropa as Tabelas para o Banco de dados"
 	@echo "\t$(b)r-shell$(s)\t\t\tAbre uma instância bash dentro do container do r-leggo-twitter"
-	@echo "\t$(b)r-export-data url="https://api.leggo.org.br"$(s)\t\tExecuta o processamento de dados (fetchers) para Proposições, parlamentares e tweets"
+	@echo "\t$(b)r-export-data url="https://api.parlametria.org.br"$(s)\t\tExecuta o processamento de dados (fetchers) para Proposições, parlamentares e tweets"
 	@echo "\t$(b)r-export-data-db-format$(s)\tExecuta o processamentos dos dados para o formato do BD"
 	@echo "\t$(b)feed-do-migrations$(s)\tAtualiza as tabelas para o Banco de dados"
 	@echo "\t$(b)r-export-tweets-to-process$(s)\tRecupera os tweets do banco de dados que ainda não foram processados e salva em csv"

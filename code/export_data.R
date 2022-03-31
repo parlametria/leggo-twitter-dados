@@ -10,7 +10,7 @@ args = commandArgs(trailingOnly=TRUE)
 message("Use --help para mais informações\n")
 
 option_list = list(
-  make_option(c("-u", "--url"), type="character", default="https://api.leggo.org.br", 
+  make_option(c("-u", "--url"), type="character", default="https://api.parlametria.org.br", 
               help="url da api do parlametria [default= %default]"),
   make_option(c("-p", "--prop"), type="character", default="", 
               help="caminho para o csv de proposições [default= %default]")
