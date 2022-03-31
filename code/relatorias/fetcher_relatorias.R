@@ -6,7 +6,7 @@
 #' @return Dataframe com informações dos relatores das proposições de uma agenda.
 fetch_relatores_proposicoes_by_agenda <-
   function(agenda = "congresso-remoto",
-           api_url = "https://dev.api.parlametria.org.br") {
+           api_url = "https://api.parlametria.org.br") {
     library(tidyverse)
     
     print(paste0("Baixando relatores de proposições da agenda ", agenda, "..."))
@@ -39,7 +39,7 @@ fetch_relatores_proposicoes_by_agenda <-
 #' @description Retorna relatorias de proposições de todas as agendas
 #' @param api_url URL da api do Parlametria. (Não incluir a '/' ao final do domínio).
 #' @return Dataframe com informações dos relatores das proposições de todas as agendas.
-fetch_relatores_proposicoes_todas_agendas <- function(api_url = "https://dev.api.parlametria.org.br") {
+fetch_relatores_proposicoes_todas_agendas <- function(api_url = "https://api.parlametria.org.br") {
   library(tidyverse)
   
   agendas <- RCurl::getURL(paste0(api_url, "/interesses")) %>% 

@@ -7,7 +7,7 @@
 #' @return Dataframe com informações das proposições de uma agenda.
 fetch_proposicoes_by_agenda <-
   function(agenda = "transparencia-e-integridade",
-           api_url = "https://dev.api.parlametria.org.br") {
+           api_url = "https://api.parlametria.org.br") {
     library(tidyverse)
 
     print(paste0("Baixando proposições da agenda ", agenda, "..."))
@@ -83,7 +83,7 @@ fetch_proposicoes_by_agenda <-
 #' @description Retorna as proposições monitoradas pelas agendas do Leggo
 #' @param api_url URL da api do Parlametria. (Não incluir a '/' ao final do domínio).
 #' @return Dataframe com informações das proposições.
-fetch_proposicoes_todas_agendas <- function(api_url = "https://dev.api.parlametria.org.br") {
+fetch_proposicoes_todas_agendas <- function(api_url = "https://api.parlametria.org.br") {
   library(tidyverse)
   
   agendas <- RCurl::getURL(paste0(api_url, "/interesses")) %>% 

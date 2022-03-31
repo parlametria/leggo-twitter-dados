@@ -3,7 +3,7 @@
 #' @param api_url URL da api do Parlametria. (Não incluir a '/' ao final do domínio).
 #' @return Dataframe com informações dos parlamentares em exercício,
 #' como id, casa, nome, partido e uf.
-fetch_parlamentares_em_exercicio <- function(api_url = "https://dev.api.parlametria.org.br") {
+fetch_parlamentares_em_exercicio <- function(api_url = "https://api.parlametria.org.br") {
   library(tidyverse)
   
   url <-
