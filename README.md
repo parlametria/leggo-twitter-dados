@@ -70,7 +70,7 @@ Nesta seção apresentaremos dois comandos úteis para o processamento dos dados
 1. A primeira etapa do processamento envolve capturar, processar e salvar os dados de proposições, parlamentares e tweets. Para isto é possível executar o comando:
 
 ```
-make r-export-data url=https://api.leggo.org.br
+make r-export-data url=https://api.parlametria.org.br
 ```
 
 Todos os dados serão salvos na pasta `data/` conforme o módulo ao qual pertence.
